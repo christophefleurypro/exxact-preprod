@@ -1,0 +1,219 @@
+.section-mission{
+	margin-top: 100px;
+	margin-bottom: 0px;
+	padding-top: 250px;
+	padding-bottom: 150px;
+    position: relative;
+    @include media-breakpoint-down('md'){
+    	margin-bottom: 50px;
+    	margin-top: 50px;
+    	padding-top: 70px;
+    	padding-bottom: 70px;
+    }
+    &:after{
+		content: '';
+		position: absolute;
+	    z-index: -15;
+	    height: 20%;
+		bottom: 0px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $light-grey;
+	}
+	&:before{
+		content: '';
+		position: absolute;
+	    z-index: 1;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #191919 ;
+		background-image: url('../img/icon/bg-mission.svg');
+		background-size: 50%;
+		transform: skew(00deg, -10deg);
+	}
+	.container{
+		position: initial;
+		z-index: 10;
+	}
+}
+
+
+.slider-missions{
+	position: inherit;
+    z-index: 10;
+    .swiper-container{
+	    @include media-breakpoint-down('md'){
+	    	padding-right: 50px;
+	    }
+    }
+	.swiper-pagination {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+	    display: flex;
+        flex-direction: column;
+	    justify-content: center;
+	    align-items: flex-end;
+        width: max-content;
+	    @include media-breakpoint-down('md'){
+	    	transform: translateX(10px);
+	    }
+	    .swiper-pagination-bullet{
+	    	border-radius: 0px;
+	    	margin-bottom: 5px;
+	    	background-color: $white;
+	    	opacity: 0.5;
+	    	height: 5px;
+	    	width: 37px;
+	    	transition: 0.3s linear;
+	    	transform: translateX(10px) skew(40deg, 0deg);
+	    	&-active{
+	    		opacity: 1;
+	    		height: 10px;
+	    		width: 50px;
+	    		background-color: $orange;
+	    	}
+	    }
+
+	}
+
+
+	.item-title{
+		display: flex;
+		align-items: center;
+		.title{
+			margin-right: 20px;
+		}
+	}
+	.swiper-button{
+		position: relative;
+	    display: inline-block;
+	    top: auto;
+	    left: auto;
+	    right: auto;
+        margin: 0px;
+		margin-left: 50px;
+	    bottom: auto;
+	    @include media-breakpoint-down('md'){
+			margin-left: 20px;
+	    }
+	}
+}
+
+
+.swiper-container-ctr{
+	.swiper-button{
+		width: auto;
+		height: auto;
+		&:focus{
+		    outline: none;
+		}
+		&:after{
+			display: none;
+		}
+		&-prev{
+			svg{
+				transform: rotate(180deg);
+			}
+		}
+		&-next{
+
+		}
+
+	}
+}
+
+.btn-circle{
+	*{
+		transition: 0.1s linear;
+	}
+	&:hover{
+		cursor: pointer;
+		svg{
+			[stroke-width="3"]{
+				stroke-width: 1.5px;
+			}
+		}
+	}
+}
+.swiper-slide.swiper-slide-active.item-mission-ctr{
+	.item-mission{
+		[data-anim="1"]{ transition-delay: 0s; opacity: 1; transform: translateY(0px);}
+	    [data-anim="2"]{ transition-delay: 0.2s; opacity: 1; transform: translateY(0px);}
+	    [data-anim="3"]{ transition-delay: 0.4s; opacity: 1; transform: translateY(0px);
+			&:after{
+				transition-delay: 0.4s; opacity: 1; transform: translate(-30%,-50%);
+   			}
+	    }
+	}
+}
+
+
+.item-mission-ctr{
+	.item-mission{
+		position: relative;
+	    padding-top: 80px;
+
+	    [data-anim="1"]{ transition: 0.2s ease-in-out; transition-delay:0s; opacity: 0; transform: translateY(10px);}
+	    [data-anim="2"]{ transition: 0.2s ease-in-out; transition-delay:0s; opacity: 0; transform: translateY(10px);}
+	    [data-anim="3"]{ transition: 0.2s ease-in-out; transition-delay:0s; opacity: 0; transform: translateY(10px);}
+
+		.item-mission-nb{
+			position: absolute;
+			z-index: 5;
+			left: 20px;
+			top: 0px;
+			color: $orange;
+		    font-weight: 600;
+		    font-size: 250px;
+		    line-height: 1em;
+		    @include media-breakpoint-down('md'){
+		    	font-size: 120px;
+		    }
+		}
+		.item-mission-detail-ctr{
+			position: relative;
+			z-index: 10;
+			.item-mission-detail{
+			    padding-top: 90px;
+			    @include media-breakpoint-down('md'){
+				    padding-top: 0px;
+			    }	
+			}
+		}
+		.item-mission-explication-ctr{
+			position: relative;
+			z-index: 10;
+			.item-mission-explication{
+			    @include media-breakpoint-down('md'){
+			    	padding-top: 20px;
+			    }
+				&:after{
+					content:'';
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 200px;
+					height: 128px;
+					background-image: url('../img/icon/quote.svg');
+					background-repeat: no-repeat;
+					background-size: contain;
+					background-position: center;
+					transform: translate(-30%,-10%);
+					transition: 0.4s ease-in-out; transition-delay:0s; opacity: 0; ;
+			   		@include media-breakpoint-down('md'){
+					    left: 40px;
+					    top: 20px;
+					    width: 80px;
+					    height: 98px;
+					}
+				}
+
+			}
+		}
+	}
+}

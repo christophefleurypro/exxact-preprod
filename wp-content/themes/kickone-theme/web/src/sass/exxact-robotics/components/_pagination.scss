@@ -1,0 +1,52 @@
+
+/*
+|
+| Pagination
+|---------------
+*/
+.pagination-container {
+    margin: 30px auto 0 auto;
+    li {
+        display: inline-block;
+       
+        span, a{
+            line-height: 1.2em;
+            font-size: 1.3em;
+            font-weight: 800;
+        }
+        a {
+            transition: all 0.3s ease-out;
+            padding: 0 18px;
+            color: $dark-grey;
+            text-decoration: underline;
+            &:hover {
+                color: $orange;
+            }
+        }
+ 
+
+        .current {
+            padding: 0 18px;
+            font-weight: 800;
+            color: $orange;
+        }
+        &.prev-next{
+            a{
+                svg{
+                    width: 19px;               
+                }
+                &.prev{
+                    svg{
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+        &.disable{
+            pointer-events: none;
+            cursor: default;
+            opacity: 0.3;
+        }
+    }
+   
+}

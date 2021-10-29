@@ -1,0 +1,8 @@
+#-------------------------------------------------------
+#               AJAX ROUTES CONFIGURATION
+#-------------------------------------------------------
+#
+# This file is meant to list all ajax routes, and make each route 
+# correspond to a couple 'controler-method'
+#
+#

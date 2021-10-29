@@ -1,0 +1,199 @@
+
+/*
+|
+| Menu
+|-------
+*/
+#mobile-menu{
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+   
+    opacity: 0;
+    visibility: hidden;
+    padding-top: 80px;
+    overflow: hidden;
+
+    .item-container{
+        position: relative;
+        z-index: 5;
+        overflow: auto;
+        max-height: calc(100vh - 80px);
+    }
+    .bg-skew{
+        position: absolute;
+        top: -100px;
+        bottom: -100px;
+        left:0;
+        right: 0;
+        background-color: $white;
+        z-index: 0;
+    }
+    .bg-svg{
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left:0;
+        right: 0;
+        background-color: transparent;
+         background-image: url('../img/icon/menu-mobil.svg');
+        background-repeat: no-repeat;
+        background-position: -90px 90px;
+        z-index: 1;
+    }
+    .btn-menu {
+        position: absolute;
+        z-index: 5;
+        top: 20px;
+        right: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0px;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+
+        &>.item-burger {
+            display: block;
+            width: 30px;
+            &>span {
+                display: block;
+                width: 100%;
+                height: 4px;
+                background-color: $orange;
+                border-radius: 0px;
+                &:nth-child(1){
+                    transform-origin: 14px;
+                }
+                &:nth-child(2) {
+                    margin: 6px 0;
+                }
+                &:nth-child(3){
+                    transform-origin: 12px;
+                }
+            }
+        }
+        @include media-breakpoint-up(xl) {
+            display: none;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        display: none !important;
+    }
+    .item-link{
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .item-container{
+        @extend .container;
+        padding-left: 0px;
+        padding-right: 0px;
+        //padding-top: 150px;
+        //padding-bottom: 50px;
+        .big-menu{
+        }
+        .other-menu{
+            .menu-item{
+                &:first-child{
+                    padding-top: 15px;
+                     border-top: 1px solid $very-light-grey;
+                }
+                &:last-child{
+                    padding-bottom: 15px;
+                    border-bottom: 1px solid $very-light-grey;
+                }
+            }
+        }
+        > ul {
+            overflow: hidden;
+            padding-top: 0;
+            > li {
+                margin-bottom: 0;
+                >  a {
+                    color: $grey;
+                    font-size: 16px;
+                    line-height: 2em;
+                    font-weight: 600;
+                    padding: 6px 30px;
+                    -webkit-font-smoothing: antialiased;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    &:hover,
+                    &:focus{
+                        text-decoration: none;
+                        color: $orange;
+                    }
+                    .ico-target{
+                        transform: rotate(180deg);
+                        margin-left: 20px;
+                    }
+                    &.collapsed{
+                         .ico-target{
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+    .lang-menu{
+        display: flex;
+        padding-left: 5px;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 26px 40px 0 0;
+        width: 100%;
+        .item-lang{
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 0;
+            padding: 4px ​10px;
+            line-height: 2em;
+            font-family: $font-family-custom;
+            font-weight: 600;
+            &.active{
+                opacity: 0.4;
+            }
+        }
+    }
+    .item-socials-container{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+
+        .item-socials{
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+
+            a{
+                font-size: 25px;
+
+                &:not(:last-child){
+                    margin-right: 25px;
+                }
+            }
+
+            @include media-breakpoint-down(xs) {
+                margin-bottom: 15px;
+
+                a{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+    
+}

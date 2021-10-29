@@ -1,0 +1,75 @@
+.section-contact{
+	position: relative;
+    .container-fluid{
+    	height: 100%;
+    }
+    .contact-content-ctr{
+    	width: 100%;
+    	position: relative;
+    	.contact-content{
+    		padding: 190px 50px 50px 70px;
+	    	@include media-breakpoint-down(md){
+    			padding: 30px 15px ;
+	    	}
+    	}
+    }
+    .list-detail-job .detail-item{
+    	text-decoration: underline;
+    }
+    .detail-ctr{
+		position: fixed;
+	    z-index: 10;
+	    bottom: 0;
+	    left: 0;
+	    width: 35%;
+	    background: $white;
+
+    	@include media-breakpoint-down(md){
+	    	position: relative !important;
+    	    z-index: 10;
+		    bottom: auto;
+		    left: 0;
+		    top: 0;
+		    width: 80%;
+		    margin-top: 220px;
+	    }
+    	@include media-breakpoint-down(sm){
+		    width: 80%;
+	    }
+
+
+	    &.absolute{
+	    	position: absolute;
+	    }
+	    .detail{
+    	    padding: 50px;
+    		@include media-breakpoint-down(md){
+    	    	padding: 20px 60px 20px 15px;
+    	    }
+	    }
+	    .img-svg{
+	    	position: absolute;
+	    	right: 0;
+	    	top: 0;
+	    	bottom: 0;
+	    	margin: auto;
+	    	transform: translate(50%,0%);
+	    }
+	}
+
+    .contact-image-ctr{
+    	position: fixed;
+    	height: 100vh;
+    	@include media-breakpoint-down(md){
+    		position: absolute;
+    		height: 270px;
+    	}
+    }
+
+	.cms{
+		p{
+		}
+	}
+
+}
+

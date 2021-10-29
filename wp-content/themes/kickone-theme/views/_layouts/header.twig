@@ -1,0 +1,301 @@
+{% set menuTop          = menu.headertop.get_items %}
+{% set menuBottom       = menu.headerbottom.get_items %}
+
+{% set menu_top         = true %}
+{% set type_sub_menu    = 'sub-menu-simple' %}
+{% set header_other     = false %}
+
+{#
+|
+| Header
+|---------
+#}
+<header id="header" class="header-end {{ function([services, 'set_color_menu'] ) }}">
+    {#
+    |
+    | SUR MENU
+    |---------
+    #}
+    {% if menu_top and menuTop %}
+        <div >
+            <div class="header-secondary"  >
+                <div class="header-container ">
+                    <nav class="item-nav">
+                        <ul class="item-ul">
+                            {% for item in menuTop %}
+                                <li class="{{ item.classes | join(' ') }}" >
+                                    <a class="item-link" href="{{item.link}}">
+                                        {% if item.add_icon %}
+                                            {{ function([services, 'svg'], img ~ '/icon/'~ item.add_icon ~'.svg') }}
+                                        {% endif %}
+                                        {{item.title}}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% if languages|length > 1 %}
+                            <div class="lang-container" >
+                                <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/bottom.svg') }}</span>
+                                {% for language in languages %}
+                                    {% if language.active == 1 %}
+                                        <span class="active lang-item">{{ language.code }}</span> 
+                                    {% else %}
+                                        <ul>
+                                            <li>
+                                                <a class="item-lang" href="{{ language.url }}">{{ language.code }}</a>
+                                            </li>
+                                        </ul>
+                                    {% endif %}
+
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+    {#
+    |
+    | MENU PRINCIPAL
+    |---------
+    #}
+    <div class="header-principal {{type_sub_menu}}">
+        <div class="header-container ai-center jc-end" >
+            <div class="logo-ctr" >
+                <a href="{{ function('home_url') }}" class="item-logo">
+                    {{ function([services, 'svg'], img ~ '/icon/logo.svg') }}
+                </a>
+            </div>
+            <div class="nav-ctr ">
+                <nav class="item-nav">
+                    <ul class="item-ul">
+                        {% for item in menuBottom %}
+                            <li class="{{ item.classes | join(' ') }} {{ item.add_select ? 'menu-item-has-children' : '' }} {% if item.add_select == "products" %}p-initial{% endif %}">
+                                <a class="item-link {{item.scroll}}" href="{{item.link}}" data-id="{{item.slug}}" >
+                                    <div class="ico-target">
+                                        {{ function([services, 'svg'], img ~ '/icon/bottom-black.svg') }}
+                                    </div>
+                                    {{item.title}}
+                                </a>
+                                {% if item.add_select == "home" %}
+                                    <div class="panel-submenu">
+                                        <ul class="nav-submenu">
+                                            {% for item in function([services, 'get_section_home_page'], front_id ) %}
+                                                <li>
+                                                    <a class="item-link {{item.scroll}}" href="{{item.link}}" data-id="{{item.slug}}">
+                                                        {{item.title}}
+                                                    </a>   
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% elseif item.add_select == "products" %}
+                                    <div class="panel-submenu --products">
+                                        {% for item in item.children %}
+                                            <div class="col-md-6 col-term">
+                                                {% set term = function([services, 'get_types_product'], item._menu_item_object_id ) %}
+                                                <div class="item-term exxact-image exxact-image--2by1">
+                                                    <div class="img-cover bg-light">
+                                                        <figure class="banner-background">
+                                                            <img src="{{TimberImage(term.detail.image).src}}" alt="{{TimberImage(term.detail.name).alt}}" class="img-fluid"/>
+                                                        </figure>
+                                                    </div>
+                                                    <div class="name-term"><span>{{term.detail.name}}<span></div>
+                                                </div>
+                                                <ul class="list-product">
+                                                    {% for product in term.products %}
+                                                        <li class="item-product">
+                                                            <a href="{{product.link}}">
+                                                                {{product.title}}
+                                                            </a>
+                                                        </li> 
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% elseif item.get_children %}
+                                    <div class="panel-submenu">
+                                        <ul class="nav-submenu">
+                                            {% for item in item.children %}
+                                                <li>
+                                                    <a class="item-link " href="{{item.link}}" data-id="{{item.slug}}">
+                                                        {{item.title}}
+                                                    </a>   
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <nav class="item-nav item-nav--floating">
+                    <ul class="item-ul">
+                        {% for item in menuTop %}
+                            <li class="{{ item.classes | join(' ') }}" data-stagger-item>
+                                <a class="item-link" href="{{item.link}}">
+                                    {% if item.add_icon %}
+                                        {{ function([services, 'svg'], img ~ '/icon/'~ item.add_icon ~'.svg') }}
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+
+            <button class="btn-menu" data-stagger-item>
+                <span class="item-burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+
+        </div>
+    </div>
+
+    
+
+</header>
+
+{#
+|
+| Mobile Menu
+|--------------
+#}
+<div id="mobile-menu">
+
+     <button class="btn-menu">
+        <span class="item-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </button>
+
+    <div class="item-container">
+        <ul class="big-menu">
+            {% for item in menuBottom %}
+
+                {% set href = item.link %}
+                {% set other = "" %}
+
+                {% if item.type_de_lien == "first" and item.get_children %}
+                    {% set href  = "#collapse-" ~ item.slug %}
+                    {% set other = 'data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse-' ~ item.slug ~'" ' %}
+                {% endif %}
+
+                <li class="{{ item.classes | join(' ') }}" data-stagger-item>
+                    <a href="{{href}}" class="item-link"  {{other}} >
+                        {{item.title}}
+                        {% if item.get_children %}
+                            <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/bottom.svg') }}</span>
+                        {% endif %}
+                    </a>
+
+                    {% if item.type_de_lien == "first" and item.get_children %}
+                        <div class="collapse header-submenu" id="collapse-{{item.slug}}">
+                            <div class="row">
+                                {% set image = item.img_submenu_image %}
+                                <div class="col-lg-6 col-md-12 hero-image-ctr">
+                                    <div class="hero-image">
+                                     <a href="{{item.link}}">
+                                            <div class="img-cover bg-overlay bg-overlay--green">
+                                                <figure>
+                                                    <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid"/>
+                                                </figure>
+                                            </div>
+                                            <div class="hero-image-title">
+                                                <span>{{item.img_submenu_texte}}</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {% if item.get_children %}
+                                    <div class="col-md-6">    
+                                        {% for children in item.get_children %}
+                                            <div class="col-md-12 nav-submenu-ctr">
+                                                <a class="link-submenu-title" href="{{children.link}}">{{children.title}}</a>
+
+                                                {% if children.type_de_lien == 'section' %}
+                                                    {% set fields = function([services, 'get_section_page'], children.object_id  ) %}
+                                                    {% if fields %}
+                                                        <ul class="nav-submenu">
+                                                            {% for field in fields %}
+                                                                {% if field.add_to_menu == true %}
+                                                                    <li>
+                                                                        <a class="link-submenu-link" href="{{children.link}}#{{field.add_to_menu_name|sanitize}}">{{field.add_to_menu_name}}</a>
+                                                                    </li>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% endif %}
+                                                {% else %}
+
+                                                    {% if children.get_children %}
+                                                        <ul class="nav-submenu">
+                                                            {% for children_1 in children.get_children %}
+                                                                <li>
+                                                                     <a class="link-submenu-link" {{children_1.target ? 'target="_blank"' : '' }} href="{{children_1.link}}">{{children_1.title}}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <ul class="other-menu">
+            {% for item in menuTop %}
+                <li class="{{ item.classes | join(' ') }}" data-stagger-item>
+                    <a class="item-link" href="{{item.link}}">
+                        {{item.title}} &nbsp;
+                        {% if item.add_icon %}
+                            <span class="c-orange">
+                            {{ function([services, 'svg'], img ~ '/icon/'~ item.add_icon ~'.svg') }}
+                            </span>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% if languages|length > 1 %}
+            <div class="lang-menu" data-stagger-item>
+
+                {% for language in languages %}
+                    {% if language.active == 1 %}
+                        <div class="item-lang active lang-item">
+                            <a class="item-lang" href="{{ language.url }}">{{ language.code }}</a>
+                        </div> 
+                    {% else %}
+                        <div class="item-lang">
+                            <a class="item-lang" href="{{ language.url }}">{{ language.code }}</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+
+    <div class="bg-svg"></div>
+    <div class="bg-skew"></div>
+</div>

@@ -1,0 +1,64 @@
+//Base
+@import 'base/variables';
+@import 'base/fonts';
+@import 'base/default';
+@import 'base/image';
+@import 'base/content';
+
+//components
+@import 'components/animation';
+@import 'components/cookie';
+@import 'components/pagination';
+@import 'components/social';
+@import 'components/buttons';
+@import 'components/smooth-scrollbar';
+@import 'components/forms';
+@import 'components/loader';
+
+
+//header
+@import 'header/default';
+@import 'header/menu-simple';
+@import 'header/sub-menu-simple';
+@import 'header/mobil-menu';
+
+//footer
+@import 'footer/simple';
+
+
+//sections
+@import 'layout/banner';
+@import 'layout/contact';
+@import 'layout/histoire';
+@import 'layout/news';
+@import 'layout/team';
+@import 'layout/philosophie';
+@import 'layout/mission';
+@import 'layout/expertise';
+@import 'layout/regions';
+@import 'layout/lesplus';
+@import 'layout/offres';
+@import 'layout/job';
+@import 'layout/products';
+@import 'layout/actu';
+@import 'layout/nav';
+@import 'layout/galery';
+@import 'layout/solution';
+@import 'layout/context';
+@import 'layout/spec';
+@import 'layout/partner';
+@import 'layout/doc';
+
+
+//Pages
+@import 'pages/home';
+@import 'pages/news';
+@import 'pages/single';
+@import 'pages/contact';
+@import 'pages/error-404';
+@import 'pages/produit';
+
+
+@import 'base/zoom-150';
+
+

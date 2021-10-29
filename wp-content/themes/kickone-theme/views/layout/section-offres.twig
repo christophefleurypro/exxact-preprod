@@ -1,0 +1,68 @@
+
+<section class="section section-offres" {% if id %}id="{{id}}"{% endif %}>
+    <div class="container" data-anim-timeline>
+        <div class="row justify-content-center item-content">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="item-title mb-lg md-down-mb-md">
+                    <h2 class="title title-xl fw-600 mb-sm tt-u" data-anim-item="fadeInUp.parallax.xs">
+                        <span class="span-title">{{ content['--title'] }}</span>
+                    </h2>
+                </div>
+                <div class="cms mb-lg">
+                    <p>{{content['--text']}}</p>
+                </div>
+                <div class="list-btn">
+                    {% set link = content['--btn-1'] %}
+                    {{button.default({ 
+                        'type'          :   link['lien-type'],
+                        'text'          :   link['texte'],
+                        'lien-interne'  :   link['lien-interne'],
+                        'lien-externe'  :   link['lien-externe'],
+                        'mail'          :   link['mail'],
+                        'phone'         :   link['phone'],
+                        'id'            :   link['id'],
+                        'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                        'color'         :   'orange' ,
+                        'class'         :   'btn-icon btn-icon-left mb-md',
+                        'get'           :   valueBtn_1
+                        }, img)
+                    }}
+
+                     {% set link = content['--btn-2'] %}
+                    {{button.default({ 
+                         'type'          :   link['lien-type'],
+                        'text'          :   link['texte'],
+                        'lien-interne'  :   link['lien-interne'],
+                        'lien-externe'  :   link['lien-externe'],
+                        'mail'          :   link['mail'],
+                        'phone'         :   link['phone'],
+                        'id'            :   link['id'],
+                        'icon'          :   false,
+                        'color'         :   'b-black' ,
+                        'class'         :   '',
+                        'get'           :   valueBtn_2
+                        }, img)
+                    }}
+                </div>
+            </div>
+            <div class="col-lg-6 offres-img-ctr">
+                <div class="offres-img-bf">
+                    <svg class="svg-bg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1348 1076" style="enable-background:new 0 0 1348 1076;" xml:space="preserve">
+                        <defs>
+                            <clipPath id="mask">
+                                <style type="text/css">
+                                    .st0{fill-rule:evenodd;clip-rule:evenodd;fill:#000000;}
+                                </style>
+                                <path id="Forme_1" class="st0" d="M1348,449.8H883.3l153.1-256H833l-153.1,256L629,538l50.8,87.9L939.7,1076h203.4L883.2,625.9H1348
+                            V449.8z M318.3,0H114.9l259.9,450.1H0v176.1h374.7L231.3,877.4h203.4l143.4-251.2L629,538l-50.8-87.9L318.3,0z"/>
+                            </clipPath>
+                        </defs>
+
+                         <image width="100%" height="100%" preserveAspectRatio="xMinYMin slice" xlink:href="{{TimberImage(content['--image']).src|resize(570)}}" clip-path="url(#mask)"/>
+                    </svg>
+                </div>
+            </div>  
+        </div>
+    </div>
+ 
+</section>

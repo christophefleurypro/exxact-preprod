@@ -1,0 +1,154 @@
+
+
+{#
+|
+| Pagination
+|-------------
+#}
+{% macro pagination(params,img) %}
+    {% set pagination = params.pagination %}
+    {% set prev = params.prev ? params.prev : 'prev' %}
+    {% set next = params.next ? params.next : 'next' %}
+
+    <ul class="pagination-container ta-c">
+        {#
+        |
+        | Pages
+        |--------
+        #}
+
+        <li class="prev-next {{pagination.prev ? '' : 'disable'}} ">
+            <a href="{{pagination.prev ? pagination.prev.link : '#' }}" class="prev {{pagination.prev.class}}">
+                {{ function([services, 'svg'], img ~ '/icon/swiper-btn.svg') }}
+            </a>
+        </li>
+        {% for page in pagination.pages %}
+            <li>
+                {% if page.link %}
+                    <a href="{{ page.link }}" class="{{ page.class }}">{{ page.title }}</a>
+                {% else %}
+                    <span class="{{ page.class }}">{{ page.title }}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+
+        <li class="prev-next {{pagination.next ? '' : 'disable'}} ">
+            <a href="{{pagination.next ? pagination.next.link : '#' }}" class="next {{pagination.next.class}}">
+                {{ function([services, 'svg'], img ~ '/icon/swiper-btn.svg') }}
+            </a>
+        </li>
+
+        
+    </ul>
+{% endmacro %}
+
+
+
+
+{% macro classique(params, img) %}
+    {% set classes      = params.class  %}
+    {% set title        = params.title  %}
+    {% set content      = params.content %}
+    {% set link         = params.link.groupe %}
+    {% set image        = params.image   %}
+    {% set classesTitle = params.classTitle ?  params.classTitle : 'title-lg'  %}
+    {% set classesImg   = params.classImg   %}
+    {% set classesImgTitle   = params.classImgTitle   %}
+
+    {% import '_macros/button.twig' as button %}
+
+    <section class="section-classique {{classes}}"> 
+        <div class="item-content container">
+            <div class="row item-content-row">
+                <div class="col-lg-6 classique-content-ctr" >
+                    <div class="item-title">
+                        <h2 class="title {{classesTitle}}">{{ title }}</h2>
+                    </div>
+                    <div class="cms">
+                        {{ content }}
+                    </div>
+                    <div class="list-btn">
+                        {{button.default({ 
+                            'type'          :   link['lien-type'],
+                            'text'          :   link['texte'],
+                            'lien-interne'  :   link['lien-interne'],
+                            'lien-externe'  :   link['lien-externe'],
+                            'mail'          :   link['mail'],
+                            'phone'         :   link['phone'],
+                            'color'         :   'black' ,
+                            'class'         :   'btn-icon btn-icon-right'
+                            }, img )
+                        }}
+                    </div>
+                </div>
+                <div class="col-lg-5 hero-image-ctr">
+                    <div class="hero-image {{classesImg}}">
+                        <div class="img-cover">
+                            <figure>
+                                <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid"/>
+                            </figure>
+                        </div>
+                    </div>
+                    {% if params.legende %}
+                        <div class="hero-image-title {{classesImgTitle}}">
+                            {{TimberImage(image).title}}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endmacro %}
+
+
+
+
+
+{% macro actu(item, img, class, translations) %}
+    {% import '_macros/button.twig' as button %}
+
+    <div class="col-md-12 card-actu-ctr card-actu-big {{class}}" >
+         <a href="{{item.link}}" class="card-actu ai-center">
+            
+            <div class="card-actu-img exxact-image">
+                <div class="img-cover">
+                    <figure>
+                        <img src="{{TimberImage(item.get_field('preview--image')).src}}" alt="{{item.title}}" class="img-fluid"/>
+                    </figure>
+                </div>
+            </div>
+            <div class="card-actu-content">
+                <div class="card-title">{{item.title}}</div>
+                <div class="card-date">
+                    <span>{{ function([services, 'svg'], img ~ '/icon/job-categorie.svg') }}</span>
+                    <p>{{item.date('d/m/Y')}}</p>
+                </div>
+                <div class="card-detail cms">
+                    <p>{{item.get_field('article--text')|excerpt(30)}}</p>
+                </div>
+                <div class="card-term">
+                    <ul>
+                    {% for cat in item.categories() %}
+                        <li>#{{cat.name}}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross.svg') }}</span>
+
+                 <div class="list-btn">
+                    {{button.defaultFalse({ 
+                        'text'          :   translations.lirelasuite,
+                        'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                        'color'         :   'b-orange' ,
+                        'class'         :   'btn-icon btn-icon-left'
+                        }, img )
+                    }}
+                </div>
+            </div>
+            
+        </a>
+    </div>
+
+{% endmacro %}
+

@@ -1,0 +1,55 @@
+#------------------------------------------------------
+#                     ACF Extend OPTIONS
+#------------------------------------------------------
+#
+# This file allows to manage ACF Extend
+#
+#
+
+#--------------------- Class ----------------------
+class:
+  - SectionMenuID
+  - SimpleBtn
+  - SimpleWysiwyg
+
+
+#--------------------- options ----------------------
+options:
+  - analytics
+  - header
+  - footer
+  - cookie
+  - pages
+  - reseaux-sociaux
+  - settings
+
+#--------------------- sections ----------------------
+sections: 
+ - _banner
+ - _sectionTeam
+ - _sectionEntreprise
+ - _sectionPhilosophie
+ - _sectionMission
+ - _sectionExpertise
+ - _sectionRegion
+ - _sectionLesplus
+ - _sectionOffres
+ - _sectionProduct
+ - _sectionActu
+ 
+#---------------------  CPT    ----------------------
+cpt:
+  - equipe
+  - emplois
+  - missions
+  - expertise
+  - produit
+  - post
+
+#---------------------  Template    ----------------------
+templates:
+  - home
+  - contact
+  - emplois
+  - regions
+  - actu

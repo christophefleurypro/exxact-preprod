@@ -1,0 +1,20 @@
+.section-doc{
+	padding-top: 80px;
+	padding-bottom: 80px;
+	position: relative;
+	background-color: $orange;
+	background-image: url('../img/products/bg-contact@2x.jpg');
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-position: left center;
+
+	.svg-background{
+		position: absolute; top: 0; right: 0; bottom: 0; width: 25%;
+		svg{
+			z-index: 10;
+			position: absolute;left: 0; top: 0; bottom: 0; margin: auto;
+			transform: translateX(-50%);
+			width: 170px;
+		}
+	}
+}

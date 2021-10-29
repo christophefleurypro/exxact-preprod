@@ -1,0 +1,147 @@
+.section-histoire{
+
+
+	.item-content{
+		.histoire-content{
+			.cms{
+				padding-left: 0;
+				padding-right: 120px;
+				@include media-breakpoint-down('md'){
+					padding-right: 15px;
+				}
+			}
+		}
+		.histoire-image{
+
+		}
+	}
+
+
+
+	.container-first{
+		.item-content{
+			.histoire-image{
+				figure{
+					position: relative;
+					transform: translateY(-50px);
+					@include media-breakpoint-down('md'){
+						transform: none;
+					}
+				}
+			}
+		}
+	}
+	.container-second{
+		.item-content{
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+			.histoire-content{
+				.cms{
+					padding-left: 120px;
+					padding-right: 0;
+					@include media-breakpoint-down('md'){
+						padding-right: 15px;
+						padding-left: 0px;
+					}
+				}
+			}
+		}	
+	}
+	
+	.container-inner{
+		position: relative;
+		&:after{
+			content: '';
+			right: 0px;
+			width: 2px;
+			height: 100%;
+			background:  $very-light-grey;
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+		    transform: translateX(50%);
+		    @include media-breakpoint-down('md'){
+				display: none;
+			}
+		}
+
+		.list-date{
+		    position: absolute;
+		    z-index: 10;
+		    right: 0px;
+		    top: 0px;
+		    bottom: 0px;
+		    list-style: none;
+		    transform: translateX(50%);
+		    display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+
+			@include media-breakpoint-down('md'){
+				display: none;
+			}
+
+		    .item-date{
+		    	color: $very-light-grey;
+		    	font-size: 80px;
+		    	font-weight: 500;
+		    	position: relative;
+		    	span{
+		    		padding-left: 24px;
+		    	}
+		    	&:after{
+		    		content: '';
+		    		position: absolute;
+		    		bottom: -20px;
+		    		left: 0;
+		    		right: 0px;
+		    		margin: auto;
+		    		width: 20px;
+		    		height: 20px;
+		    		background: $white;
+		    		border: 2px solid $very-light-grey;
+		    		border-radius: 100%;
+		    	}
+		    }
+		}
+
+	}
+	.container{
+		&:first-child{
+			.container-inner{
+				padding-top: 100px;
+				&:after{
+					background:  linear-gradient($white 0%,$very-light-grey 25%, $very-light-grey 100%);
+				}
+		        @include media-breakpoint-down('md'){
+					padding-top: 70px;
+		        }
+			}
+		}
+		&:last-child{
+			.container-inner{
+				padding-bottom: 100px;
+		        @include media-breakpoint-down('md'){
+					padding-bottom: 70px;
+		        }
+				.list-date{
+					.item-date{
+						&:last-child{
+							position: relative;
+							padding-bottom: 100px;
+					    	&:after{
+							    height: 66px;
+							    width: 66px;
+							    top: 130px;
+							    background-image: url('../img/icon/logo-simple.svg');
+							    background-repeat: no-repeat;
+							    background-size: contain;
+							    background-position: center;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

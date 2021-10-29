@@ -1,0 +1,383 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div id="page-produit" data-product="{{post.slug}}">
+
+
+        {#
+        |
+        | Section Banner
+        |-----------------
+        #}
+        {{ banner.single_produit({
+            'logo': post.get_field('produit--logo'),
+            'title': post.get_field('produit--titre'),
+            'text':  post.get_field('produit--text'),
+            'btn1':  post.get_field('produit--btn'),
+            'btn2':  post.get_field('produit--btn-2'),
+            'category':  category.slug,
+            'blog_page_url' : blog_page_url,
+            'image': post.get_field('produit--image')
+        }, img) }}
+
+    
+
+         {#
+        |
+        | Section Contexte
+        |------------------
+        #}
+        <section class="section-nav">
+            <div class="container">
+                <ul>
+                    {% for item in function([services, 'get_section_product'], post.ID ) %}
+                        <li>
+                            <a class="item-link scroll-section" href="{{item.link}}" data-id="{{item.slug}}">
+                                <span>{{item.title}}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+
+        {#
+        |
+        | Section Contexte
+        |------------------
+        #}
+        {% set menuID = post.get_field('context--section-menu-id') %}
+        <section class="section-context" {% if menuID['--text'] %}id="{{menuID['--text']|sanitize}}" data-scroll-submenu {% endif %}>
+            <div class="container" data-anim-timeline>
+                <div class="row jc-center"> 
+                    <div class="col-md-8 mb-xl">
+                        <h2 class="title-exxact title-exxact--left title title-xl fw-600 " data-anim-item="fadeInUp.parallax.xs">
+                            <span class="span-title">{{post.get_field('context--titre')}}</span>
+                            <span class="span-icon" >{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                        </h2>   
+                    </div>
+                </div>
+                <div class="row jc-center"> 
+                    <div class="col-md-8 swiper-container-ctr">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for item in post.get_field('context--listing') %}
+                                    <div class="swiper-slide item-mission-ctr">
+                                        <div class="item-context-date" data-anim="1">{{item['--date']}}</div>
+                                        <div class="item-context-detail-ctr"  data-anim="2">
+                                            <h3 class="title title-md item-context-title c-orange fs-200 mb-xl">{{item['--title']}}</h3>
+                                            <div class="cms block-content-job item-context-detail">
+                                                <p>{{item['--text']}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="swiper-button swiper-button-prev btn-circle">
+                            {{ function([services, 'svg'], img ~ '/icon/swiper-btn.svg') }}
+                        </div>
+                        <div class="swiper-button swiper-button-next btn-circle">
+                            {{ function([services, 'svg'], img ~ '/icon/swiper-btn.svg') }}
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </section>
+
+
+        {#
+        |
+        | Section Solutions
+        |------------------
+        #}
+        {% set menuID = post.get_field('solution--section-menu-id') %}
+        {% if menuID['hide-section'] == false %}
+            <section class="section-product-solution" {% if menuID['--text'] %}id="{{menuID['--text']|sanitize}}" data-scroll-submenu {% endif %} >
+
+                <div class="container" data-anim-timeline>
+                    <div class="row row-content">   
+                        <div class="col-md-6 mb-xxl">
+                            <h2 class="title title-exxact title-xl fw-600 title-exxact-style-2" >
+                                <span class="span-title" data-anim-item="fadeInUp.parallax.xs">{{post.get_field('solution--titre')}}</span>
+                                <span class="span-icon">{{ function([services, 'svg'], img  ~ '/icon/title-border.svg' ) }}</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="svg-background">
+                    {{ function([services, 'svg'], img ~ '/products/3s-bg-bordure.svg') }}
+                </div>
+                {% for item in post.get_field('solution--listing') %}
+                    <div class="one-solution {{loop.index % 2 == 0 ? 'solution-reverse' : '' }}" data-anim-timeline>
+                        <div class="container">
+                            <div class="row row-content">   
+                                <div class="col-md-5">
+                                    <h3 class="title title-md c-orange mb-lg">{{item['--date']}}</h3>
+                                    <div class="cms cms-list">{{item['--text']}}</div>     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 solution-image">
+                            <div class="exxact-image">
+                                <div class="img-cover">
+                                    <figure>
+                                        <img src="{{TimberImage(item['--image']).src}}" alt="{{item['--date']}}" class="img-fluid"/>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </section>
+        {%  endif %}
+
+
+        {#
+        |
+        | Section Partenariats
+        |------------------
+        #}
+        {% set menuID = post.get_field('partners--section-menu-id') %}
+        {% if menuID['hide-section'] == false %}
+            <section class="section-partenariats" {% if menuID['--text'] %}id="{{menuID['--text']|sanitize}}" data-scroll-submenu {% endif %} >
+                <div class="svg-background">
+                </div>
+                <div class="container" data-anim-timeline>
+                    <div class="row ai-end jc-around row-content">   
+
+                        <div class="col-md-6 col-bloc-left-ctr">
+                            <div class="col-bloc-left">
+                                <h2 class="title-exxact c-white title-exxact--left title title-xl fw-600 mb-lg" data-anim-item="fadeInUp.parallax.xs">
+                                    <span class="span-title">{{post.get_field('partners--titre')}}</span>
+                                    <span class="span-icon" >{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                                </h2>   
+                                <div class="cms c-white">
+                                    {{post.get_field('partners--text')}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-bloc-right-ctr">
+
+                            <div class="col-bloc-right col-bloc-right-top">
+                                <h2 class="title-exxact c-black title title-xl fw-600 mb-lg" data-anim-item="fadeInUp.parallax.xs">
+                                    <span class="span-title">{{post.get_field('partners--titre-right')}}</span>
+                                </h2>   
+                                 <div class="cms">
+                                    {{post.get_field('partners--text-right')}}
+                                </div>
+                            </div>
+
+                            <div class="col-bloc-right col-bloc-right-bottom">
+                                <div class="row ai-center">
+                                    {% for item in post.get_field('partners--listing') %}
+                                        <div class="col-md-{{loop.first ? 12 : 6 }}">  
+                                            {% if item['--url'] %}
+                                                <a href="{{item['--url']}}" target="_blank" class="partner-link">
+                                            {% endif %}
+                                                <div class="partner-item {{loop.first ? 'first-partner' : '' }}" >
+                                                    <img src="{{Image(item['--image']).src}}" class="img-fluid item-img">
+                                                </div>
+                                            {% if item['--url'] %}
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        {%  endif %}
+
+       
+
+        {#
+        |
+        | Section Gallery
+        |------------------
+        #}
+        {% set menuID = post.get_field('gallery--section-menu-id') %}
+        {% if menuID['hide-section'] == false %}
+            <section class="section-galery" {% if menuID['--text'] %}id="{{menuID['--text']|sanitize}}" data-scroll-submenu {% endif %} >
+                <div class="swiper-container-ctr slider-galery" data-nb="{{post.get_field('gallery-listing')|length}}">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper" >
+                            {% for item in post.get_field('gallery-listing') %}
+                                <div class="swiper-slide" >
+                                    <div class="img-cover">
+                                        <figure>
+                                            <img src="{{TimberImage(item).src}}" alt="{{item.title}}" class="img-fluid"/>
+                                        </figure>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="swiper-pagination-ctr"> 
+                            <div class="swiper-button swiper-button-prev btn-circle">
+                                {{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button swiper-button-next btn-circle">
+                                {{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {%  endif %}
+
+
+        {#
+        |
+        | Section adaptabilite
+        |------------------
+        #}
+        {% set content = {
+            "--title" : post.get_field('technologie--titre'),
+            "--relation" : post.get_field('technologie--listing'),
+            "--section-menu-id" : post.get_field('technologie--section-menu-id') 
+        } %}
+        {% if content['--section-menu-id']['hide-section'] == false %}
+            <section class="section-expertise"  {% if content['--section-menu-id']['--text'] %}id="{{content['--section-menu-id']['--text']|sanitize}}" data-scroll-submenu {% endif %} data-offset-top="0">
+                <div class="container">
+                    <div class="row mb-lg md-down-mb-0" data-anim-timeline>
+                        <div class="col-lg-12 ta-c mb-md md-down-mb-sm" data-anim-item="fadeInUp.stagger.sm">
+                            <h2 class="title title-xl fw-600 mb-sm" data-stagger-item>
+                                <span class="span-title">{{content['--title']}}</span>
+                            </h2>   
+                        </div>
+                    </div>
+                    <div class="row jc-center list-expertise">
+                        <div class="col-md-10">
+                            <div class="row">
+                            {% for item in content['--relation'] %}
+                                <div class="col-md-6 col-lg-4 card-expertise-ctr">
+                                    <div class="card-expertise">
+                                        <div class="card-expertise-detail">
+                                            <div class="detail-title">
+                                                <span>{{item['--date']}}</span>
+                                            </div>
+                                        </div>
+                                        <figure class="card-expertise-img">
+                                            {{ function([services, 'svg'], TimberImage(item['--picto']).src) }}
+                                        </figure>
+                                        <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross.svg') }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row swiper-container-ctr slider-expertise">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {% for item in section['--relation'] %}
+                                    <div class="swiper-slide card-expertise-ctr card-expertise-ctr-slider">
+                                         <a href="#" data-izimodal-open="#modal--{{loop.index}}" data-izimodal-zindex="99999999" data-izimodal-preventclose=""  class="card-expertise ">
+                                            <div class="card-expertise-detail">
+                                                <div class="detail-title">
+                                                    <span>{{item['--date']}}</span>
+                                                </div>
+                                            </div>
+                                            <figure class="card-expertise-img">
+                                                {{ function([services, 'svg'], TimberImage(item['--picto']).src) }}
+                                            </figure>
+                                            <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross.svg') }}</span>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+
+
+
+         {#
+        |
+        | Section Sec techniques
+        |------------------
+        #}
+        {% set menuID = post.get_field('spec--section-menu-id') %}
+        {% if menuID['hide-section'] == false %}
+            <section class="section section-spec"  {% if menuID['--text'] %}id="{{menuID['--text']|sanitize}}" data-scroll-submenu {% endif %}  data-offset-top="0">
+                <div class="container">
+                    <div class="row mb-md md-down-mb-0" data-anim-timeline>
+                        <div class="col-lg-12 ta-c mb-xl md-down-mb-sm" data-anim-item="fadeInUp.stagger.sm">
+                            <h2 class="title title-xl fw-600 mb-sm" data-stagger-item>
+                                <span class="span-title">{{post.get_field('spec--titre')}}</span>
+                            </h2>   
+                            <p class="fs-xl fw-200 c-grey" data-stagger-item>{{post.get_field('spec--texte')}}</p>
+                        </div>
+                    </div>
+                    <div class="row jc-around" data-anim-timeline>
+                        {% set group = post.get_field('spec--left') %}
+                        <div class="col-lg-5" data-anim-item="fadeInUp.stagger.sm">
+                            <h3 class="title title-md item-context-title c-orange fs-200 mb-lg">{{group['--titre']}}</h3>
+                            <div class="cms block-content-job item-context-detail">
+                                <p>{{group['--text']}}</p>
+                            </div>
+                        </div>
+                        {% set group = post.get_field('spec--right') %}
+                        <div class="col-lg-5" data-anim-item="fadeInUp.stagger.sm">
+                            <h3 class="title title-md item-context-title c-orange fs-200 mb-lg">{{group['--titre']}}</h3>
+                            <div class="cms block-content-job item-context-detail">
+                                <p>{{group['--text']}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svg-background">
+                    {{ function([services, 'svg'], img ~ '/icon/bg-spec.svg') }}
+                </div>
+            </section>
+        {% endif %}
+                
+
+        {#
+        |
+        | Section documentation
+        |------------------
+        #}
+        {% set menuID = post.get_field('doc--section-menu-id') %}
+        {% if menuID['hide-section'] == false %}
+            <section class="section-doc"  {% if menuID['--text'] %}id="{{menuID['--text']|sanitize}}" data-scroll-submenu {% endif %}  data-offset-top="0">
+                <div class="container">
+                    <div class="row " data-anim-timeline>
+                        <div class="offset-lg-2 col-lg-6" data-anim-item="fadeInUp.stagger.sm">
+                            <h2 class="title title-xl fw-600 mb-md c-white" data-stagger-item>
+                                <span class="span-title">{{post.get_field('doc--titre')}}</span>
+                            </h2>   
+                            {% if post.get_field('doc--form') %}
+                                <div id="documentation" class="contact-form" data-anim-item="fadeInUp.parallax">
+                                    {% set shortcode = "[contact-form-7 id="~ post.get_field('doc--form') ~"]" %}
+                                    {{shortcode|shortcodes}}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="svg-background">
+                    {{ function([services, 'svg'], img ~ '/icon/bg-spec.svg') }}
+                    <div class="img-cover">
+                       <figure class="">
+                            <img src="{{Image(post.get_field('doc--logo')).src}}" class="img-fluid">
+                        </figure>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+        
+    </div>
+
+{% endblock %}

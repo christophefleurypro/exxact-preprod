@@ -1,0 +1,29 @@
+
+<section class="section section-philosophie"  {% if id %}id="{{id}}"{% endif %}>
+    <div class="container" data-anim-timeline>
+
+        <div class="row mb-lg md-down-mb-sm">
+            <div class="col-lg-12 ta-c mb-xl">
+                <h2 class="title-exxact title-exxact--center title title-xxl fw-600 " data-anim-item="fadeInUp.parallax.xs">
+                    <span class="span-title">{{content['--title']}}</span>
+                    <span class="span-icon">{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                </h2>   
+            </div>
+        </div>
+
+        <div class="row list-philosophie jc-around">
+            {% for item in content["--list"] %}
+                <div class="col-md-5 philosophie-ctr">
+                    <div class="philosophie-title">
+                        <h3 class="title-lg c-orange">{{item['--title']}}</h3>   
+                    </div>
+                    <div class="philosophie-detail">
+                        <div class="cms c-green">
+                            <p>{{item['--text']}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

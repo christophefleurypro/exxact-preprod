@@ -1,0 +1,16 @@
+body.zoom-150{
+    font-size: 10px;
+
+    #header .header-secondary .header-container .item-nav .item-ul li .item-link,
+    #header .item-link{
+    	font-size: 11px;
+    }
+    .title-xxl{font-size: 40px !important;}
+    .fs-xxl{ font-size: 22px !important;}
+    .title-xl, .cms h1{ font-size: 40px !important; }
+    .btn{ font-size: 12px !important; }
+
+    .container, #header .header-container, #mobile-menu .item-container{
+	    max-width: 960px !important;
+    }
+}

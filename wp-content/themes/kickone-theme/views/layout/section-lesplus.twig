@@ -1,0 +1,51 @@
+
+<section class="section section-lesplus"  {% if id %}id="{{id}}"{% endif %}>
+    <div class="container" data-anim-timeline>
+
+        <div class="row" >
+            <div class="offset-lg-7 col-lg-5 mb-xl md-down-mb-md" data-anim-item="fadeInUp.stagger.sm">
+                <div class="item-title mb-xl md-down-mb-sm">
+                    <h2 class="title title-xl c-orange fw-600 mb-sm tt-u" data-stagger-item>
+                        <span class="span-title">{{ content['--title'] }}</span>
+                    </h2>
+                    <p class="fs-xxl fw-200 c-grey" data-stagger-item>{{content['--text']}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row jc-end">
+            <div class="col-md-4">
+                <p class="ta-r lesplus-subtitle">
+                {{content['--subtitle']}}
+                </p>
+            </div>
+            <div class="col-md-7" data-anim-timeline >
+                <div class="row list-lesplus" data-anim-item="fadeInUp.stagger.sm">
+                    {% for item in content['--block'] %}
+                        <div class="col-lg-6 col-xs-6 item-lesplus-ctr" > 
+                            <div class="item-lesplus " data-stagger-item>
+                                <p class="fs-xl c-orange mb-sm">{{item['--title']}}</p>
+                                <div class="lesplus cms">
+                                    <p class="mb-0">{{item['--text']}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="exxact-image exxact-image--lesplus" >
+        <div class="span-icon">{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</div>
+        <div class="span-circle">{{ function([services, 'svg'], img ~ '/icon/circle.svg') }}</div>
+        <div class="img-cover">
+            <figure >
+                    <img src="{{TimberImage(content['--image']).src|resize(1000)}}" loading="lazy" alt="{{TimberImage(content['--image']).alt}}" class="img-fluid"/>
+            </figure>
+        </div>
+    </div>
+
+</section>

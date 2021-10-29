@@ -1,0 +1,58 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div id="page-contact"  class="page-content">
+
+        <section class="section-contact">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="detail-ctr" id="detail-ctr">
+                        <div class="detail">
+                            <p class="c-orange fs-xl mb-md">{{post.get_field('sc-2-title')}}</p>
+                             <ul class="list-detail-job mb-0">
+                                <a href="{{post.get_field('sc-2-adresse-link')}}" target="_blank" class="detail-item mb-sm">
+                                    <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-localisation.svg')}}</span>
+                                    {{post.get_field('sc-2-adresse')}}
+                                </a>
+                                <a href="tel:{{post.get_field('sc-2-phone')}}"  class="detail-item ">
+                                    <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-phone.svg')}}</span>
+                                    {{post.get_field('sc-2-phone')}}
+                                </a>
+                            </ul>
+                        </div>
+                        <span class="img-svg">{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                    </div>
+
+                    <div class="col-lg-6 contact-image-ctr">
+                        <div class="img-cover">
+                            <figure class="banner-background">
+                                <img src="{{TimberImage(post.get_field('s-banner')['--image']).src}}" alt="{{TimberImage(post.get_field('s-banner')['--image']).alt}}" class="img-fluid"/>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-6 offset-md-2 contact-content-ctr" data-anim-timeline="onload">
+                        <div class="contact-content">
+                            <div class="mb-lg">
+                                <h1 class="mb-md title title-xl fw-600 c-orange" data-anim-item="fadeInUp.parallax">{{post.get_field('s-banner')['--title']}}</h1>  
+                                <div class="cms" data-anim-item="fadeInUp.parallax">
+                                    <p class="c-green">{{post.get_field('s-banner')['--text']}}</p>   
+                                </div>
+                            </div>
+
+                            {% if post.get_field('sc-3-form') %}
+                                <div id="postuler" class="contact-form" data-anim-item="fadeInUp.parallax">
+                                     {% set shortcode = "[contact-form-7 id="~ post.get_field('sc-3-form') ~"]" %}
+                                    {{shortcode|shortcodes}}
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+{% endblock %}

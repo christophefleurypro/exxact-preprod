@@ -1,0 +1,139 @@
+
+.card-actu-ctr{
+	margin-bottom: 30px;
+	.card-actu{
+		position: relative;
+		display: block;
+		height: 100%;
+		width: 100%;
+		border: 3px solid $very-light-grey;
+		transition: 0.2s linear;
+		background: $white;
+		&:before{
+			content: '';
+			position: absolute;left: 0; top: 0; right: 0; bottom: 0;
+			background: $very-light-grey;
+			transition: 0.2s ease-In-Out;
+			z-index: -1;
+			transform: translate(-15px,-15px);
+		}
+		.card-actu-img{
+			background: $very-light-grey;
+		}
+		.card-actu-content{
+			padding: 30px 30px 20px 30px;
+			position: relative;
+			.ico-target{
+				position: absolute;
+				bottom: 22px;
+			    right: 22px;
+			    width: 18px;
+			    height: 18px;
+			    svg{
+					width: 100%;
+					height: 100%;
+			    	line {
+	       				transition: 0.2s linear;
+		                stroke : $orange;
+		            }
+			    }
+			}
+		}
+		&:after{
+   			content: '';
+   			position: absolute;
+   			right: 4px;
+   			bottom: 4px;
+   			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 22px 22px;
+			border-color: transparent transparent #DCDCDC transparent;
+			transition: 0.2s linear;
+   		}
+		.card-title{
+			color: $orange;
+			font-size: 1.2em;
+			margin-bottom: 20px;
+		}
+		.card-date{
+			display: flex;
+			align-items: center;
+			font-size: 1em;
+			margin-bottom: 20px;
+		    font-style: italic;
+			span{ margin-right: 10px;}
+			svg{ width: 20px;}
+		}
+		.card-detail{
+			color: $dark-grey;
+		}
+		.card-term{
+			padding-right: 30px;
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+			    column-gap: 20px;
+				gap: 20;
+				li{
+		    		font-style: italic;
+					color: $dark-grey;
+				}
+			}
+		}
+		&:hover{
+			border-color: $orange;
+		    color: $black;
+			&:before{
+				transform: translate(0px, 0px);
+			}
+			&:after{
+				border-color: transparent transparent $orange transparent;
+			}
+		}
+	}
+
+	&.card-actu-big{
+		margin-bottom: 60px;
+		.card-actu{
+			display: flex;
+			flex-direction: row;
+			padding: 40px 50px 40px 0px;
+			.card-actu-content{
+				position: initial;
+				.list-btn{
+					position: absolute;
+					transform: translateY(37px);
+					.btn{
+						background: $white;
+					}
+				}
+			}
+			.ico-target{
+				display: none;
+			}
+			.card-term{
+				margin-top: 30px;
+			}
+			.card-actu-img{
+				transform: translateX(-50px);
+			}
+			&:hover{
+				.list-btn .btn-b-orange{
+					background: $orange;
+					color: $white;
+				}
+			}
+		}
+
+		&.card-reverse{
+			.card-actu{
+				padding: 40px 0px 40px 50px ;
+				flex-direction: row-reverse;
+				.card-actu-img{
+					transform: translateX(50px);
+				}
+			}
+		}
+	}
+}

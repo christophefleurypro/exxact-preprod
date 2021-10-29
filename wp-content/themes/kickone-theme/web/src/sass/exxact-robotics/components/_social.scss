@@ -1,0 +1,49 @@
+.ul-rs{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 0px;
+	.item-rs {
+		margin: 0px 1px;
+		list-style: none;
+		padding: 0px;
+		a{
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			padding: 7px;
+			height: 32px;
+			width: 32px;
+			margin: 0px;
+    		transition: 0.2s linear;
+			color: $black;
+			svg{
+				height: 16px;
+				width: 16px;
+		    	path,rect, circle, polyline, polygon ,line {
+		    		transition: 0.2s linear;
+		            &[fill^="#"]{
+		                fill : $black;
+		            }
+		            &[stroke^="#"]{
+		                stroke : $black;
+		            }
+		        }
+			}
+			&:hover{
+				color: $orange;
+				svg{
+			    	path,rect, circle, polyline, polygon ,line {
+			            &[fill^="#"]{
+			                fill : $orange;
+			            }
+			            &[stroke^="#"]{
+			                stroke : $orange;
+			            }
+			        }
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,66 @@
+/*
+|--------------------
+|      BUTTONS
+|--------------------
+*/
+.btn-icon{
+    display: inline-flex;
+    align-items: center;
+	&.btn-icon-center{
+		justify-content: center;
+	    padding-right: 50px;
+		.icon{
+			position: relative !important;
+			margin: 0px !important;
+		}
+	}
+}
+
+
+/*
+|--------------------
+|      BUTTONS classique with icon
+|--------------------
+*/
+.btn{
+	.icon{
+		transition: all 0.3s linear;
+	}
+	&.btn-icon{
+		.icon{
+			top: 0;
+			bottom: 0;
+			margin: auto;
+
+		}
+		&.btn-orange{
+		    svg{
+		    	path,rect, circle, polyline, polygon ,line {
+	                &[fill^="#"]{
+	                    fill : $orange;
+	                }
+	                &[stroke^="#"]{
+	                    stroke : $orange;
+	                }
+	            }
+			}
+		}
+		&.btn-icon-right{
+			&:hover{
+				.icon{
+					transform: translateX(20px);
+				}
+			}
+		}
+	
+	}
+}
+
+.btn-b-black,
+.btn-orange{
+	&:hover{
+		background: transparent;
+		color: $orange;
+		border-color: $orange;
+	}
+}

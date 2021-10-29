@@ -1,0 +1,160 @@
+#-------------------------------------------------------
+#                    CPT DECLARATION
+#-------------------------------------------------------
+#
+# To add a CPT, copy and paste the CPT config below, 
+# and replace with the right datas
+#
+#
+
+#--------------------- Produit ----------------------
+produit:
+  registration:
+    labels:
+      name: Produits
+      singular_name: Produit
+      add_new: Ajouter un produit
+      add_new_item: Ajouter un produit
+      edit_item: Modifier un produit
+      new_item: Nouveau
+      all_items: Tous les produits
+      view_item: Voir l'élément
+      search_item: Rechercher un produit
+      not_found: Aucun produit
+      not_fonud_in_trash: Aucun produit trouvé dans la corbeille
+      menu_name: Produits
+    public: true
+    publicly_queryable: true
+    show_ui: true
+    show_in_menu: true
+    query_var: produit
+    capability_type: post
+    has_archive: true
+    hierarchical: false
+    menu_position: 5
+    menu_icon: dashicons-admin-site
+    exclude_from_search: false
+    supports: 
+      - title
+
+#--------------------- equipe ----------------------
+equipe:
+  registration:
+    labels:
+      name: Equipe
+      singular_name: Equipe
+      add_new: Ajouter un membre
+      add_new_item: Ajouter un membre
+      edit_item: Modifier un membre
+      new_item: Nouveau
+      all_items: Toute l'équipe
+      view_item: Voir l'élément
+      search_item: Rechercher un membre
+      not_found: Aucun membre
+      not_fonud_in_trash: Aucun membre trouvé dans la corbeille
+      menu_name: Equipes
+    public: false
+    publicly_queryable: true
+    show_ui: true
+    show_in_menu: true
+    query_var: equipe
+    capability_type: post
+    has_archive: true
+    hierarchical: false
+    menu_position: 5
+    menu_icon: dashicons-admin-site
+    exclude_from_search: false
+    supports: 
+      - title
+      
+#--------------------- mission ----------------------
+mission:
+  registration:
+    labels:
+      name: Missions
+      singular_name: Mission
+      add_new: Ajouter une mission
+      add_new_item: Ajouter une mission
+      edit_item: Modifier une mission
+      new_item: Nouveau
+      all_items: Toutes les missions
+      view_item: Voir une mission
+      search_item: Rechercher une mission
+      not_found: Aucune mission
+      not_fonud_in_trash: Aucune mission trouvé dans la corbeille
+      menu_name: Missions
+    public: false
+    publicly_queryable: true
+    show_ui: true
+    show_in_menu: true
+    query_var: mission
+    capability_type: post
+    has_archive: true
+    hierarchical: false
+    menu_position: 5
+    menu_icon: dashicons-admin-site
+    exclude_from_search: false
+    supports: 
+      - title
+
+#--------------------- expertise ----------------------
+expertise:
+  registration:
+    labels:
+      name: Expertises
+      singular_name: Expertise
+      add_new: Ajouter une expertise
+      add_new_item: Ajouter une expertise
+      edit_item: Modifier une expertise
+      new_item: Nouveau
+      all_items: Toutes les expertises
+      view_item: Voir une expertise
+      search_item: Rechercher une expertise
+      not_found: Aucune expertise
+      not_fonud_in_trash: Aucune expertise trouvé dans la corbeille
+      menu_name: Expertises
+    public: false
+    publicly_queryable: true
+    show_ui: true
+    show_in_menu: true
+    query_var: expertise
+    capability_type: post
+    has_archive: true
+    hierarchical: false
+    menu_position: 5
+    menu_icon: dashicons-admin-site
+    exclude_from_search: false
+    supports: 
+      - title
+
+#--------------------- emplois ----------------------
+emplois:
+  registration:
+    labels:
+      name: Emplois
+      singular_name: Emploi
+      add_new: Ajouter un emploi
+      add_new_item: Ajouter un emploi
+      edit_item: Modifier un emploi
+      new_item: Nouveau
+      all_items: Tous les emplois
+      view_item: Voir l'élément
+      search_item: Rechercher un emploi
+      not_found: Aucun emploi
+      not_fonud_in_trash: Aucun emploi trouvé dans la corbeille
+      menu_name: Emplois
+    public: treu
+    publicly_queryable: true
+    show_ui: true
+    show_in_menu: true
+    query_var: emplois
+    rewrite:
+      slug: emploi
+    capability_type: post
+    has_archive: true
+    hierarchical: false
+    menu_position: 5
+    menu_icon: dashicons-admin-site
+    exclude_from_search: false
+    supports: 
+      - title

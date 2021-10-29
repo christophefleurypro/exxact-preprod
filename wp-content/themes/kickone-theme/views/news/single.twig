@@ -1,0 +1,104 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    <div id="page-news-single" class="page-offset">
+
+        {#
+        |
+        | Post meta
+        |-----------------
+        #}
+        <section class="section section-news mt-sm pb-lg" data-anim-timeline="onload">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8">
+                        <h1 class="title title-exxact title-xl fw-600 title-exxact-style-2 mb-md" >
+                            <span class="span-title" data-anim-item="fadeInUp.parallax.xs">{{post.title}}</span>
+                            <span class="span-icon">{{ function([services, 'svg'], img  ~ '/icon/title-border.svg' ) }}</span>
+                        </h1>
+                        <div class="detail-date-ctr">
+                            <div class="card-date">
+                                <span>{{ function([services, 'svg'], img ~ '/icon/job-categorie.svg') }}</span>
+                                <p>{{post.date('d/m/Y')}}</p>
+                            </div>
+                            <div class="card-term">
+                                <ul>
+                                {% for cat in post.categories() %}
+                                    <li>#{{cat.name}}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        {% if post.get_field('article--image') %}
+            <section class="section pt-0 pb-md">
+                <div class="container">
+                    <div class="exxact-image exxact-image--16-9">
+                        <div class="img-cover bg-orange">
+                            <figure class="banner-background">
+                                <img src="{{TimberImage(post.get_field('article--image')).src}}" alt="{{TimberImage(post.get_field('article--image')).alt}}" class="img-fluid  {% if imageM %}d-none d-sm-block{% endif %}"/>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="row mt-lg">
+                        <div class="col-xl-10 offset-xl-1">
+                            <div class="cms block-content-job">
+                                {{post.get_field('article--text')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        {#
+        |
+        | Post content
+        |-----------------
+        #}
+        {% for item in post.get_field('article--contenu') %}
+
+
+            {% set case = item.acf_fc_layout %}
+
+            {% if case == "texte" %}
+                <section class="section pt-0 {{loop.last ? 'pb-xl' : 'pb-md' }}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-10 offset-xl-1">
+                                {% if item['--title'] %}
+                                    <h2 class="title title-lg c-orange mb-md">{{item['--title']}}</h2> 
+                                {% endif %}
+                                <div class="cms block-content-job ">
+                                    {{ item['--text'] }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% elseif case == "image" %}
+                <section class="section pt-0 {{loop.last ? 'pb-xl' : 'pb-md' }}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="exxact-image exxact-image--16-9">
+                                <div class="img-cover bg-orange">
+                                    <figure class="banner-background">
+                                        <img src="{{TimberImage(item['--image']).src}}" alt="{{TimberImage(item['--image']).alt}}" class="img-fluid  {% if imageM %}d-none d-sm-block{% endif %}"/>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

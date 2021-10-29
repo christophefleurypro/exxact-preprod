@@ -1,0 +1,101 @@
+#-------------------------------------------------------
+#                 TAXONOMIES DECLARATION
+#-------------------------------------------------------
+#
+# To add a taxonomy, copy and paste the taxonomy config below, 
+# and replace with the right datas
+#
+#
+
+#--------------------- Types ----------------------
+types_produit:
+  posts:
+    - produit
+  registration:
+    labels:
+      name: Types 
+      singular_name: Type
+      menu_name: Types
+      all_items: Tous les types
+      edit_item: Modifier un type
+      update_item: Mettre à jour
+      add_new_item: Ajouter un type
+      search_items: Rechercher un type
+      new_item_name: Nouveau libellé du type
+      not_found: Aucun type trouvé
+    public: true
+    publicly_queryable: true
+    hierarchical: true
+    query_var: true
+    rewrite: 
+      slug: type
+    show_admin_column: true
+
+types:
+  posts:
+    - emplois
+  registration:
+    labels:
+      name: Types 
+      singular_name: Type
+      menu_name: Types
+      all_items: Tous les types
+      edit_item: Modifier un type
+      update_item: Mettre à jour
+      add_new_item: Ajouter un type
+      search_items: Rechercher un type
+      new_item_name: Nouveau libellé du type
+      not_found: Aucun type trouvé
+    public: true
+    publicly_queryable: true
+    hierarchical: true
+    query_var: true
+    rewrite: 
+      slug: type
+    show_admin_column: true
+
+categorie:
+  posts:
+    - emplois
+  registration:
+    labels:
+      name: Catégories 
+      singular_name: Catégories
+      menu_name: Catégories
+      all_items: Toutes les Catégories
+      edit_item: Modifier une catégorie
+      update_item: Mettre à jour
+      add_new_item: Ajouter une catégorie
+      search_items: Rechercher une catégorie
+      new_item_name: Nouveau libellé du catégorie
+      not_found: Aucun type catégorie
+    public: true
+    publicly_queryable: true
+    hierarchical: true
+    query_var: true
+    rewrite: 
+      slug: categorie
+    show_admin_column: true
+
+localisations:
+  posts:
+    - emplois
+  registration:
+    labels:
+      name: Localisations 
+      singular_name: Localisation
+      menu_name: Localisations
+      all_items: Toutes les localisation
+      edit_item: Modifier une localisation
+      update_item: Mettre à jour
+      add_new_item: Ajouter une localisation
+      search_items: Rechercher un elocalisation
+      new_item_name: Nouveau libellé de localisation
+      not_found: Aucune localisation trouvé
+    public: true
+    publicly_queryable: true
+    hierarchical: true
+    query_var: true
+    rewrite: 
+      slug: localisation
+    show_admin_column: true

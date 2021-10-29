@@ -1,0 +1,29 @@
+#page-produit{
+	
+	.section-expertise{
+		padding-top: 120px;
+		padding-bottom: 120px;
+	}
+
+	.section-nav{
+		position: sticky;
+		background: $white;
+		z-index: 99;
+		top: 64px;
+	}
+
+	&[data-product="3s-spot-spray-sensor"]{
+
+		.section-partenariats{
+			.svg-background{
+				background-image: url('../img/products/3s-bg-partner.svg');
+				background-position: left 20px;
+				background-size: 31%;
+			}
+		}
+
+	}
+}
+
+
+

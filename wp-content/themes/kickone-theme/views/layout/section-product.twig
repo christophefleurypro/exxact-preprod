@@ -1,0 +1,59 @@
+<section class="section-products-home"  {% if id %}id="{{id}}"{% endif %}>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-lg">
+                <h2 class="title title-exxact title-xl fw-600">{{section['--title']}}</h2>      
+            </div>
+        </div>
+         <div class="row swiper-container-ctr slider-product" data-nb="{{section['--relation']|length}}">
+            <div class="swiper-container">
+                <div class="swiper-wrapper" >
+                    {% for item in section['--relation'] %}
+                        <div class="swiper-slide card-product-ctr card-product-ctr-slider" >
+                             <a href="{{item.link}}" class="card-product ">
+                                <div class="card-product-img exxact-image exxact-image--2by1">
+                                    <div class="img-cover">
+                                        <figure>
+                                            <img src="{{TimberImage(item.get_field('preview--image')).src}}" alt="{{item.title}}" class="img-fluid"/>
+                                        </figure>
+                                    </div>
+                                </div>
+                                <div class="card-product-title">
+                                    <div class="title-product">
+                                        <span>{{item.title}}</span>
+                                    </div>
+                                </div>
+                                <div class="card-product-detail">
+                                    <div class="cms fw-600">
+                                        <p>{{item.get_field('preview--text')}}</p>
+                                    </div>
+                                    <div class="cms mb-md">
+                                        <p>{{item.get_field('preview--description')}}</p>
+                                    </div>
+                                    {{button.defaultFalse({ 
+                                        'type'          :   'page',
+                                        'text'          :   translations.ensavoirplus,
+                                        'icon'          :   false,
+                                        'color'         :   'b-orange' ,
+                                        'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                                        'class'         :   'btn-icon btn-icon-left mb-md',
+                                        }, img)
+                                    }}
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="swiper-button swiper-button-prev btn-circle">
+                {{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}
+            </div>
+            <div class="swiper-button swiper-button-next btn-circle">
+                {{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}
+            </div>
+        </div>
+    </div>
+    <div class="img-cover ">
+        {{ function([services, 'svg'], img  ~ '/products/products-home.svg' ) }}
+    </div>
+</section>

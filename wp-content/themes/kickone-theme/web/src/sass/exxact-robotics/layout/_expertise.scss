@@ -1,0 +1,237 @@
+.section-expertise{
+	position: relative;
+	padding-top: 250px;
+	padding-bottom: 300px;
+	@include media-breakpoint-down('md'){
+    	padding-top: 60px;
+	    padding-bottom: 80px;
+	}
+
+    &:before{
+		content: '';
+		position: absolute;
+	    z-index: -10;
+		top: -80px;
+		left: 0;
+		right: 0;
+		height: 800px;
+		background-image: url('../img/icon/bg-expertise.svg');
+	    background-size: auto 150%;
+	    background-position: center;
+	    background-repeat: no-repeat;
+		background-color: $light-grey;
+	}
+	&:after{
+		content: '';
+		position: absolute;
+	    z-index: -15;
+		top: 0px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $light-grey;
+	}
+
+	.list-expertise{
+		display: none;
+		@include media-breakpoint-up('md'){
+			display: flex;
+		}
+	}
+
+	.slider-expertise{
+		display: flex;
+		position: relative;
+	    flex-direction: column-reverse;
+		@include media-breakpoint-up('md'){
+			display: none;
+		}
+		.swiper-container{
+		    overflow: visible;
+		    width: 100%;
+			@include media-breakpoint-down('md'){
+				width: 75%;
+				margin: auto;
+				.swiper-slide{
+				    height: auto;
+				}
+			}		
+
+		}
+	}
+}
+
+
+.swiper-pagination{
+	display: flex;
+	justify-content: center;
+    width: 100%;
+	.swiper-pagination-bullet{
+		margin: 5px 2px;
+		&-active{
+			background-color: $orange;
+		}
+	}
+}
+
+.card-expertise-ctr{
+	margin-bottom: 16px;
+	padding-left: 8px;
+	padding-right: 8px;
+	.card-expertise{
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		padding: 0px;
+		border-top-left-radius: 10px;
+    	border-top-right-radius: 10px;
+    	border-bottom-right-radius: 0px;
+    	border-bottom-left-radius: 10px;
+		width: 100%;
+		height: 100%;
+		background-color: $white;
+		box-shadow: 0px 5px 30px rgba($black,0.2);
+   		transition: 0.2s linear;
+   		&:after{
+   			content: '';
+   			position: absolute;
+   			right: 4px;
+   			bottom: 4px;
+   			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 22px 22px;
+			border-color: transparent transparent #DCDCDC transparent;
+			transition: 0.2s linear;
+   		}
+		.card-expertise-detail{
+		    padding: 15px 20px;
+		    text-align: center;
+		    flex: 0 0 43%;
+		    height: 100%;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+       		color : $grey;
+       		transition: 0.2s linear;
+			@include media-breakpoint-down('md'){
+				padding: 35px 20px 15px 20px;
+       			flex: auto;
+       		}
+		}
+		
+		.ico-target{
+			position: absolute;
+			bottom: 22px;
+			right: 22px;
+			width: 18px;
+			height: 18px;
+			svg{
+		    	line {
+       				transition: 0.2s linear;
+	                stroke : $orange;
+	            }
+		    }
+		}
+
+		.card-expertise-img{
+	        padding: 20px 20px 100px 20px;
+		    text-align: center;
+		    flex: 1;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		        margin: auto;
+		    svg{
+		    	path,rect, circle, polyline, polygon ,line {
+       				transition: 0.2s linear;
+	                &[fill^="#"]{
+	                    fill : $grey;
+	                }
+	                &[stroke^="#"]{
+	                    stroke : $grey;
+	                }
+	            }
+		    }
+		}
+		&.active,
+		&:hover{
+			background-color: $orange;
+	   		&:after{
+				border-color: transparent transparent $white transparent;
+	   		}
+			.card-expertise-detail{
+                color : $white;
+			}
+			.card-expertise-img{
+				svg{
+			    	path,rect, circle, polyline, polygon ,line {
+		                &[fill^="#"]{
+		                    fill : $white;
+		                }
+		                &[stroke^="#"]{
+		                    stroke : $white;
+		                }
+		            }
+			    }
+			}
+			.ico-target{
+				svg{
+			    	line {
+		                stroke : $white;
+		            }
+			    }
+			}
+		}
+	}
+
+	&.swiper-slide{
+		padding: 30px 0px;
+	}
+}
+
+
+.iziModal{
+	@include media-breakpoint-down(sm){
+	    max-width: 95% !important;
+	    .iziModal-content{
+	    	padding: 50px 70px 80px !important;
+	    }
+	}
+	@include media-breakpoint-down(xs){
+
+		.iziModal-content{
+			padding: 30px 20px 80px !important;
+			.title{
+			    padding-right: 50px;
+			}
+		}
+	}
+	.item-close{
+	    position: absolute;
+	    top: 30px;
+	    right: 30px;
+		@include media-breakpoint-down(xs){
+			top: 15px;
+			right: 15px;
+		}
+	    .ico-target{
+	    	width: 28px;
+	    	height: 28px;
+	    }
+	}
+	.next-modal{
+	    position: absolute;
+	    bottom: 40px;
+	    right: 30px;
+	    .btn-prev{
+	    	svg{transform: rotate(180deg);}
+	    }
+	    .btn-next{
+     	    margin-left: 30px;
+	    }
+	}
+	.iziModal-content{
+		padding: 50px;
+	}
+}

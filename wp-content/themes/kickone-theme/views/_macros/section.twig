@@ -1,0 +1,76 @@
+
+{#
+#
+# Video 
+#
+#}
+{% macro video(datas, sectionID ) %}
+
+    {% set type         = datas.type  %}
+    {% set idYoutube    = datas.idYoutube  %}
+    {% set idVimeo      = datas.idVimeo  %}
+    {% set idFile       = datas.idFile  %}
+    {% set controls     = datas.controls|join(' ')  %}
+        {% if type == "Youtube" %}
+            <div id="section-video-{{sectionID}}" data-plyr-provider="youtube" data-plyr-embed-id="{{idYoutube}}" class="ctr-video" data-controls="{{controls}}" ></div>
+        {% elseif type == "Vimeo" %}
+            <div id="section-video-{{sectionID}}" data-plyr-provider="vimeo" data-plyr-embed-id="{{idVimeo}}" class="ctr-video" data-controls="{{controls}}" ></div>
+        {% else %}
+            <video class="ctr-video" id="section-video-{{sectionID}}"  controls playsinline {{datas.controlsSource}} data-controls="{{controls}}">
+                <source src="{{ idFile.url }}" type="video/mp4">
+            </video>
+        {% endif  %}
+
+{% endmacro %}
+
+
+
+{#
+#
+# Reseaux sociaux 
+#
+#}
+{% macro reseaux_sociaux(datas,img) %}
+    {% set facebook     = datas.facebook %}
+    {% set twitter      = datas.twitter %}
+    {% set instagram    = datas.instagram %}
+    {% set linkedin     = datas.linkedin %}
+    {% set youtube      = datas.youtube %}
+    <ul class="ul-rs">
+    {% if facebook %}
+        <li class="item-rs">
+            <a href="{{facebook}}" target="_blank">
+                {{ function([services, 'svg'], img ~ '/icon/rs-facebook.svg') }}
+            </a>
+        </li>
+    {% endif %}
+    {% if twitter %}
+        <li class="item-rs">
+            <a href="{{twitter}}" target="_blank">
+                {{ function([services, 'svg'], img ~ '/icon/rs-twitter.svg') }}
+            </a>
+        </li>
+    {% endif %}
+    {% if instagram %}
+        <li class="item-rs">
+            <a href="{{instagram}}" target="_blank">
+                {{ function([services, 'svg'], img ~ '/icon/rs-instagram.svg') }}
+            </a>
+        </li>
+    {% endif %}
+    {% if linkedin %}
+        <li class="item-rs">
+            <a href="{{linkedin}}" target="_blank">
+                {{ function([services, 'svg'], img ~ '/icon/rs-linkedin.svg') }}
+            </a>
+        </li>
+    {% endif %}
+    {% if youtube %}
+        <li class="item-rs">
+            <a href="{{youtube}}" target="_blank">
+                {{ function([services, 'svg'], img ~ '/icon/rs-youtube.svg') }}
+            </a>
+        </li>
+    {% endif %}
+    </ul>
+{% endmacro %}

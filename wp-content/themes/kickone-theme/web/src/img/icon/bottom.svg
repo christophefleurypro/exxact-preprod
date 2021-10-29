@@ -1,0 +1,17 @@
+<svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M258.877539,14.1353721 C258.712017,13.954876 258.442994,13.954876 258.277859,14.1353721 L253.005815,19.8953246 L247.723822,14.1353721 C247.55817,13.954876 247.289148,13.954876 247.124142,14.1353721 C246.958619,14.3153045 246.958619,14.6086635 247.124142,14.7893005 L252.695444,20.8645927 C252.77827,20.9547703 252.88177,21 252.99522,21 C253.09872,21 253.212299,20.9547703 253.295125,20.8645927 L258.866944,14.7893005 C259.042545,14.6086635 259.042545,14.3153045 258.877539,14.1353721 Z" fill="currentColor" stroke="currentColor"></path>
+    </defs>
+    <g  stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g  transform="translate(-298.000000, -487.000000)">
+            <g transform="translate(-4.000000, 83.000000)">
+                <g transform="translate(55.000000, 390.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#FFFFFF" transform="translate(253.000000, 17.500000) scale(1, -1) translate(-253.000000, -17.500000) " xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

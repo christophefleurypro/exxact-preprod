@@ -1,0 +1,82 @@
+/*
+|---------------------------------------------------------------
+| BUTTONS
+|---------------------------------------------------------------
+| Generate and set buttons
+|
+|
+*/
+
+/*
+|
+| Buttons base default
+|----------------------
+|
+*/
+$button-default-padding-y :   10px;
+$button-default-padding-x :   30px;
+$button-default-font-size :   16px;
+$button-default-icon-width :  30px;
+$button-default-icon-height : 20px;
+$button-default-icon-space :  10px;
+
+$button-default : (
+  position :        relative,
+  font-family :     $font-family-default,
+  display :         inline-block,
+  padding :         $button-default-padding-y $button-default-padding-x,
+  font-size :       $button-default-font-size,
+  background:       $white,
+  color:            $text-color,
+  border:           2px solid $light-grey,
+  border-radius:    80px,
+  font-weight:      600,
+  transition:       all 0.3s linear,
+  box-shadow:       none !important,
+  white-space:      inherit,
+  cursor:           pointer
+);
+
+/*
+|
+| Buttons size setting
+|-----------------------
+|
+*/
+$button-xs-padding-y :    10px;
+$button-xs-padding-x :    10px;
+$button-xs-font-size :    10px;
+$button-xs-icon-width :   10px;
+
+$button-sm-padding-y :    10px;
+$button-sm-padding-x :    10px;
+$button-sm-font-size :    14px;
+$button-sm-icon-width :   20px;
+
+$button-md-padding-y :    25px;
+$button-md-padding-x :    30px;
+$button-md-font-size :    14px;
+$button-md-icon-width :   40px;
+
+$button-lg-padding-y :    20px;
+$button-lg-padding-x :    30px;
+$button-lg-font-size :    20px;
+$button-lg-icon-width :   50px;
+
+
+/*
+|-------------------
+| Buttons creation
+|-------------------
+| - How to use: $button-colors: map-set-buttons($map, $index, $background-color, $border-color, $text-color)
+| - Generated classes: .btn-{size}, .btn-{color}, .btn-icon-{direction}.
+|
+*/
+$button-colors: ();
+$button-colors: map-set-buttons($button-colors, 'orange',  $orange , $orange, $white);
+$button-colors: map-set-buttons($button-colors, 'black', $black, $black, $white);
+$button-colors: map-set-buttons($button-colors, 'white', $white, $white, $orange);
+
+$button-colors: map-set-buttons($button-colors, 'b-white', transparent , $white, $white);
+$button-colors: map-set-buttons($button-colors, 'b-orange', transparent , $orange, $orange);
+$button-colors: map-set-buttons($button-colors, 'b-black', transparent , $black, $black);

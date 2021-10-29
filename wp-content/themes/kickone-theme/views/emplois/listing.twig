@@ -1,0 +1,119 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    
+    <div id="page-fonds">
+
+        {#
+        |
+        | Section Banner
+        |-----------------
+        #}
+        {% set section = post.get_field('s-banner') %}
+        {{ banner.default({
+            'title': section['--title'],
+            'text':  section['--text'],
+            'image': section['--image']
+        }) }}
+
+        
+        <section class="section-listing-job" >
+            <div class="container-filter container">
+                <form method="GET" action="" id="filter-job" class="row ai-center">
+                    <div class="col">
+                        <select name="types">
+                            <option value="all">{{translations.types}}</option>
+                            {% for item in types %}
+                                <option value="{{item.slug}}" {{item.slug == _current_types ? 'selected' : '' }}>{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col">
+                         <select name="categorie">
+                            <option value="all">{{translations.categorie}}</option>
+                            {% for item in categorie %}
+                                <option value="{{item.slug}}" {{item.slug == _current_categorie ? 'selected' : '' }}>{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-orange">
+                            <span class="text">
+                                {{translations.filter_job}}
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+           
+            <div class="container-card container">
+                <div class="row">
+                    {% for item in listing %}
+                        <div class="col-md-6 card-jpb-ctr">
+                            <a href="{{item.link}}" class="card-jpb">
+                                <p class="fs-xl c-orange mb-md">{{item.title}}</p>   
+                                <ul class="list-detail-job">
+                                    {% if item.terms('types') %}
+                                        <li class="detail-item detail-item--type">
+                                            <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-type.svg')}}</span>
+                                            {{item.terms('types')|join(', ')}}
+                                        </li>
+                                    {% endif %}
+                                    {% if item.terms('localisations') %}
+                                        <li class="detail-item detail-item--localisation">
+                                            <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-localisation.svg')}}</span>
+                                            {{item.terms('localisations')|join(', ')}}
+                                        </li>
+                                    {% endif %}
+                                    {% if item.terms('categorie') %}
+                                        <li class="detail-item">
+                                            <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-service.svg')}}</span>
+                                            {{item.terms('categorie')|join(', ')}}
+                                        </li>
+                                    {% endif %}
+                                    {% if item.get_field('emplois--demarrage') %}
+                                        <li class="detail-item">
+                                            <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-demarrage.svg')}}</span>
+                                            <span>{{translations.demarrage}}</span> <span> &nbsp;{{item.get_field('emplois--demarrage')}}</span>
+                                        </li>
+                                    {% endif %}
+                                    {% if item.get_field('emplois--deplacement') %}
+                                        <li class="detail-item">
+                                            <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-deplacement.svg')}}</span>
+                                            {{item.get_field('emplois--deplacement')}}
+                                        </li>
+                                    {% endif %}
+                                </ul>   
+
+                                <p class="fs-i"><span>{{translations.publier}} {{item.date|date('d/m/Y')}} .</span> {{translations.ref}}{{item.get_field('emplois--ref')}}</p>
+                                <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross-job.svg') }}</span>
+
+                            </a> 
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </section>
+        {#
+        |
+        | Section Les plus
+        |------------------
+        #}
+        {% set section =  post.get_field('groupe-offres') %}
+        {% if section["--section-menu-id"]['hide-section'] == false %}
+
+            {% include 'layout/section-offres.twig' with 
+                {
+                    'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                    'IndexG': IndexG, 
+                    'content': section,
+                    'valueBtn_1': translations.candiaturespon,
+                    'valueBtn_2': false
+                }  
+            %}
+
+        {% endif %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,171 @@
+/*
+|-----------------------
+| 	  Gravity Form
+|-----------------------
+|
+*/
+
+/*
+|
+| Reset form elements
+|-------------------------
+*/
+input, textarea, select{
+    -webkit-appearance: none;
+    border-radius: 0;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+select{
+    background-image: url('../img/icon/bottom-reverse.svg');
+    background-repeat: no-repeat;
+    background-size: 17px;
+    background-position: calc(100% - 17px) center;
+    min-width: 210px;
+    background-color: transparent;
+    padding: 10px 51px 10px 20px;
+    border: 1px solid $very-light-grey;
+    color: $grey;
+    &:focus{
+        border-color: $orange;
+    }
+}
+
+
+
+/*
+|
+| Contact form 
+|---------------
+*/
+.contact-form{
+    label{
+        color: $very-dark-grey;
+        margin-bottom: 0;
+        font-size: 0.9em;
+    }
+    input:not([type=file]){
+        border: 1px $very-light-grey solid;
+        color: $black;
+        font-size: 14px; 
+        border-radius: 4px;
+        max-width: 100%;
+        padding: 7px 10px;
+        width: 100%;   
+        &:focus{
+            border-color: $orange;
+        }
+    }
+    input[type=file]{
+        &:focus{
+            border-color: $orange;
+        }
+    }
+
+    textarea{
+        border: 1px $very-light-grey solid;
+        height: 400px;
+        max-height: 280px;
+        height: 280px;
+        padding: 7px 10px;
+        color: $black;
+        font-size: 14px;
+        border-radius: 4px;
+        max-width: 100%;
+        width: 100%;
+        &::placeholder{
+            color: $black;
+        }
+        &:focus{
+            border-color: $orange;
+        }
+    }
+    .item-input{
+        margin-bottom: 15px;
+    }
+
+    .item-input-file{
+        .label-custom{
+            &:hover{
+                cursor: pointer;
+            }
+            br{ display: none; }
+            margin-bottom: 0px;
+            position: relative;
+            border: 1px $very-light-grey solid;
+            display: block;
+            height: 40px;
+            border-radius: 4px;
+            background-color: $white;
+            width: 100%;
+            background-image: url('../img/icon/job-cv.svg');
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: 17px center;
+            .content{
+                color: $black;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 11px;
+                bottom: 0;
+                padding: 7px 5px 7px 50px;
+                margin: auto;
+                overflow: hidden;
+            }
+            input{
+                display: none;
+            }
+            .wpcf7-not-valid-tip{
+                padding-top: 10px;
+                padding-left: 60px;
+            }
+        }
+    }
+}
+#documentation{
+    textarea{
+        height: 160px;
+        max-height: 160px;
+    }
+    label{
+        color: $white;
+    }
+    select{
+        background-color: $white;
+        border-radius: 4px;
+        border-color: $white;
+        font-size: 0.9em;
+    }
+    .item-input{
+        margin-bottom: 10px;
+    }
+    .wpcf7-not-valid-tip{
+        color: $white;
+    }
+}
+
+/*
+|
+| Contact form 7
+|---------------
+*/
+.wpcf7 form .wpcf7-response-output{
+    border-width: 1px !important;
+    padding: 0.8em 1.3em !important;
+}
+.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output{
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 12px;
+}
+.wpcf7-form-control-wrap{
+    width: 100%;
+}
+
+.wpcf7-not-valid-tip{
+    font-size: 12px;
+}

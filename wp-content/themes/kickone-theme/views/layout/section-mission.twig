@@ -1,0 +1,39 @@
+<section class="section-mission"  {% if id %}id="{{id}}"{% endif %} data-offset-top="-100">
+	<div class="container">
+        <div class="row">
+            <div class="swiper-container-ctr slider-missions col-lg-12">
+            	<div class="item-title mb-xl md-down-mb-sm">
+                    <h2 class="title title-xl c-white fw-600">{{ section['--title'] }}</h2>
+                    <div class="swiper-button swiper-button-prev btn-circle">
+	                   	{{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}
+				  	</div>
+				   	<div class="swiper-button swiper-button-next btn-circle">
+	                   	{{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}
+				   	</div>
+                </div>
+				<div class="swiper-container">
+				    <div class="swiper-wrapper">
+				    	{% for item in section['--relation'] %}
+					        <div class="swiper-slide item-mission-ctr">
+					        	<div class="row item-mission">
+					        		<div class="item-mission-nb" data-anim="1">{{loop.index}}</div>
+						        	<div class="col-md-3 c-white item-mission-detail-ctr"  data-anim="2">
+						        		<div class="cms item-mission-detail">
+							        		<p>{{item.get_field('mission--text')}}</p>
+						        		</div>
+					        		</div>
+						        	<div class="col-md-6 offset-md-1 c-white item-mission-explication-ctr"  >
+						        		<div class="cms item-mission-explication" data-anim="3">
+						        			{{item.get_field('mission--explication')}}
+						        		</div>
+					        		</div>
+					        	</div>
+					        </div>
+				        {% endfor %}
+				    </div>
+				</div>
+			    <div class="swiper-pagination"></div>
+        	</div>
+        </div>
+    </div>
+</section>

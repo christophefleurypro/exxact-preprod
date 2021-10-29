@@ -1,0 +1,42 @@
+
+
+
+
+<section class="section-histoire pt-xl md-down-pt-sm" {% if id %}id="{{id}}"{% endif %}>
+	{% for item in content %}
+		{% set first = loop.index % 2 == 1 ? true : false %}
+		<div class="container">
+			<div class="container-inner container-{{first ? 'first' : 'second'}}" >
+				<div class="list-date">
+					{% for date in item['--list-date'] %}<li class="item-date"><span>{{date['--date']}}</span></li>{% endfor %}
+				</div>
+		        <div class="row mb-lg md-down-mb-0" data-anim-timeline>
+		            <div class="col-lg-12 mb-lg">
+		            	<h2 class="{{first ? 'title-exxact title-exxact--left title-exxact--reverse' : '' }} title title-xl fw-600 " data-anim-item="fadeInUp.parallax.xs">
+		            		<span class="span-title">{{item['--subtitle']}}</span>
+		            		{% if first %}
+                    			<span class="span-icon" >{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                    		{% endif %}
+		            	</h2>	
+		            </div>
+	            </div>
+		        <div class="row pb-lg item-content md-down-pb-sm" >
+		            <div class="col-lg-5 histoire-content">
+		            	<div class="cms">
+		            		{{item['--text']}}
+		            	</div>
+		            </div>
+		            <div class="col-lg-5 histoire-image">
+                        <figure class="{{first ? '' : 'exxact-image--gui' }}">
+                            {% if item['--image'] %}
+                                <img src="{{TimberImage(item['--image']).src|resize(445)}}" alt="{{TimberImage(item['--image']).alt}}" class="img-fluid" loading="lazy"/>
+                            {% endif %}
+                        </figure>
+		            </div>
+		        </div>
+	        </div>
+        </div>
+
+    {% endfor %}
+
+</section>

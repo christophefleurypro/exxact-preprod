@@ -1,0 +1,235 @@
+
+{# 
+|
+| Banner
+|---------
+#}
+{% macro home(params, img, translation) %}
+
+    {% import '_macros/button.twig'  as button %}
+
+    {% set classes = params.classes  %}
+
+    {% set title   = params.title  %}
+    {% set content = params.text  %}
+    {% set image   = params.image %}
+    {% set imageM  = params.imageM %}
+    {% set btn1    = params.btn1 %}
+    {% set btn2    = params.btn2 %}
+
+    <section class="banner banner--home {{ classes }}" data-anim-timeline="onload">
+        <div class="item-content" >
+            <div class="container">
+                <h1 class="title-exxact title-xl item-title fw-600  mb-md" data-anim-item="fadeInUp.parallax">
+                    <span class="span-title">{{ title }}</span>
+                    <span class="span-icon" data-anim-item="fadeInLeft.stagger.sm" data-start="0.5">{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                </h1>
+                <div class="item-text mb-md" data-anim-item="fadeInUp.parallax">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="cms">
+                                <p class="mb-0 c-black">{{ content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-btn" data-anim-item="fadeInUp.parallax">
+                    {% set link = btn1 %}
+                    {{button.default({ 
+                        'type'          :   link['lien-type'],
+                        'text'          :   link['texte'],
+                        'lien-interne'  :   link['lien-interne'],
+                        'lien-externe'  :   link['lien-externe'],
+                        'mail'          :   link['mail'],
+                        'phone'         :   link['phone'],
+                        'id'            :   link['id'],
+                        'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                        'color'         :   'orange' ,
+                        'class'         :   'btn-icon btn-icon-left'
+                        }, img)
+                    }}
+                    {% set link = btn2 %}
+                    {{button.default({ 
+                        'type'          :   link['lien-type'],
+                        'text'          :   link['texte'],
+                        'lien-interne'  :   link['lien-interne'],
+                        'lien-externe'  :   link['lien-externe'],
+                        'mail'          :   link['mail'],
+                        'phone'         :   link['phone'],
+                        'id'            :   link['id'],
+                        'icon'          :   false,
+                        'color'         :   'b-black' ,
+                        'class'         :   ''
+                        }, img)
+                    }}
+                </div>
+            </div>
+        </div>
+        <div class="img-cover  bg-orange">
+            <div class="img-svg">{{ function([services, 'svg'], img ~ '/icon/banner-guillement.svg') }}</div> 
+            <figure class="banner-background">
+                <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid  {% if imageM %}d-none d-sm-block{% endif %}"/>
+                {% if imageM %}
+                    <img src="{{TimberImage(imageM).src}}" alt="{{TimberImage(imageM).alt}}" class="img-fluid img-mobil d-sm-none"/>
+                {% endif %}
+            </figure>
+        </div>
+    </section>
+{% endmacro %}
+
+
+{# 
+|
+| defaukt
+|---------
+#}
+{% macro default(params) %}
+    {% set classes = params.classes  %}
+
+    {% set title   = params.title  %}
+    {% set content = params.text  %}
+    {% set image   = params.image %}
+    <section class="banner banner--default {{ classes }}" data-anim-timeline="onload">
+        <div class="item-content">
+            <div class="container">
+                <h1 class="title title-xl c-white fw-600 mb-md" data-anim-item="fadeInUp.parallax">
+                    {{title}}
+                </h1>   
+                {% if content %}
+                    <div class="item-text" data-anim-item="fadeInUp.parallax">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="cms c-white">
+                                    <p class="mb-0">{{ content }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="img-cover bg-light">
+            <figure class="banner-background">
+                <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid"/>
+            </figure>
+        </div>
+    </section>
+{% endmacro %}
+
+
+{% macro single_produit(params, img) %}
+
+  {% import '_macros/button.twig'  as button %}
+
+    {% set classes = params.classes  %}
+
+    {% set logo   = params.logo  %}
+    {% set title   = params.title  %}
+    {% set content = params.text  %}
+    {% set image   = params.image %}
+    {% set imageM  = params.imageM %}
+    {% set btn1    = params.btn1 %}
+        
+    {% set btn2    = params.btn2 %}
+    {% set blog_page_url    = params.blog_page_url %}
+    {% set category    = params.category %}
+
+
+    <section class="banner banner--product {{ classes }}" data-anim-timeline="onload">
+        <div class="item-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        {% if logo %}
+                            <div class="item-logo" data-anim-item="fadeInUp.parallax">
+                                <img src="{{TimberImage(logo).src}}" alt="{{TimberImage(logo).alt}}" class="img-fluid  "/>
+                            </div>
+                        {% endif %}
+                        <h1 class="title-exxact title-xl item-title fw-600  mb-md c-white" data-anim-item="fadeInUp.parallax">
+                            <span class="span-title">{{ title }}</span>
+                        </h1>
+                        <div class="item-text mb-md" data-anim-item="fadeInUp.parallax">
+                            <div class="cms">
+                                <p class="mb-0 c-white">{{ content }}</p>
+                            </div>
+                        </div>
+                        <div class="list-btn" data-anim-item="fadeInUp.parallax">
+                            {% set link = btn1 %}
+                            {{button.default({ 
+                                'type'          :   link['lien-type'],
+                                'text'          :   link['texte'],
+                                'lien-interne'  :   link['lien-interne'],
+                                'lien-externe'  :   link['lien-externe'],
+                                'mail'          :   link['mail'],
+                                'phone'         :   link['phone'],
+                                'id'            :   link['id'],
+                                'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                                'color'         :   'white' ,
+                                'class'         :   'btn-icon btn-icon-left mb-md'
+                                }, img)
+                            }}
+                            <br/>
+                            {% if btn2 %}
+                                <a href="{{blog_page_url}}?type={{category}}" class="btn btn-b-white">
+                                    <span class="text">
+                                        {{btn2}}
+                                    </span>
+                                </a>
+                            {% endif %}
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="img-cover  bg-orange">
+            <div class="img-svg">{{ function([services, 'svg'], img ~ '/icon/banner-guillement.svg') }}</div> 
+            <figure class="banner-background">
+                <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid  {% if imageM %}d-none d-sm-block{% endif %}"/>
+                {% if imageM %}
+                    <img src="{{TimberImage(imageM).src}}" alt="{{TimberImage(imageM).alt}}" class="img-fluid img-mobil d-sm-none"/>
+                {% endif %}
+
+            </figure>
+        </div>
+    </section>
+{% endmacro %}
+{# 
+|
+| Banner
+|---------
+#}
+{% macro single_job(params) %}
+    {% set classes = params.classes  %}
+
+    {% set title   = params.title  %}
+    {% set content = params.text  %}
+    {% set image   = params.image %}
+    <section class="banner banner--singlejob {{ classes }}" data-anim-timeline="onload">
+        <div class="item-content">
+            <div class="container">
+                <h1 class="title title-xl c-white fw-600 mb-xl md-down-mb-md" data-anim-item="fadeInUp.parallax">
+                    {{title}}
+                </h1>   
+                {% if content %}
+                    <div class="item-text" data-anim-item="fadeInUp.parallax">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="cms c-white">
+                                    <p class="mb-0">{{ content }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="img-cover bg-light">
+            <figure class="banner-background">
+                <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid"/>
+            </figure>
+        </div>
+    </section>
+{% endmacro %}
+

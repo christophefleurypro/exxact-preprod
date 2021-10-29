@@ -1,0 +1,61 @@
+<section class="section-actu-home" {% if id %}id="{{id}}"{% endif %}>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-lg ta-c">
+                <h2 class="title title-exxact title-xl fw-600">{{section['--title']}}</h2>     
+                <div class="mt-lg">
+                    {% set link = section['--btn'] %}
+                    {{button.default({ 
+                        'type'          :   link['lien-type'],
+                        'text'          :   link['texte'],
+                        'lien-interne'  :   link['lien-interne'],
+                        'lien-externe'  :   link['lien-externe'],
+                        'mail'          :   link['mail'],
+                        'phone'         :   link['phone'],
+                        'id'            :   link['id'],
+                        'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                        'color'         :   'orange' ,
+                        'class'         :   'btn-icon btn-icon-left mb-md',
+                        'get'           :   valueBtn_1
+                        }, img)
+                    }}
+                </div> 
+            </div>
+        </div>
+         <div class="row">
+            {% for item in section['--relation'] %}
+                <div class="col-md-4 card-actu-ctr" >
+                     <a href="{{item.link}}" class="card-actu ">
+                        
+                        <div class="card-actu-img exxact-image exxact-image--2by1">
+                            <div class="img-cover">
+                                <figure>
+                                    <img src="{{TimberImage(item.get_field('preview--image')).src}}" alt="{{item.title}}" class="img-fluid"/>
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="card-actu-content">
+                            <div class="card-title">{{item.title}}</div>
+                            <div class="card-date">
+                                <span>{{ function([services, 'svg'], img ~ '/icon/job-categorie.svg') }}</span>
+                                <p>{{item.date('d/m/Y')}}</p>
+                            </div>
+                            <div class="card-detail cms">
+                                <p>{{item.get_field('article--text')|excerpt(30)}}</p>
+                            </div>
+                            <div class="card-term">
+                                <ul>
+                                {% for cat in item.categories() %}
+                                    <li>#{{cat.name}}</li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                            <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross.svg') }}</span>
+                        </div>
+
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,72 @@
+
+<section class="section-expertise"  {% if id %}id="{{id}}"{% endif %} data-offset-top="-150">
+    <div class="container">
+
+        <div class="row mb-lg md-down-mb-0" data-anim-timeline>
+            <div class="col-lg-12 ta-c mb-xl md-down-mb-sm" data-anim-item="fadeInUp.stagger.sm">
+                <h2 class="title title-xxl fw-600 mb-sm" data-stagger-item>
+                    <span class="span-title">{{content['--title']}}</span>
+                </h2>   
+                <p class="fs-xxl fw-200 c-grey" data-stagger-item>{{content['--text']}}</p>
+            </div>
+        </div>
+        
+        <div class="row list-expertise">
+            {% for item in content['--relation'] %}
+                <div class="col-md-6 col-lg-3 card-expertise-ctr">
+                    <a href="#" data-izimodal-open="#modal--{{loop.index}}" data-izimodal-zindex="20000" data-izimodal-preventclose=""  class="card-expertise">
+                        <div class="card-expertise-detail">
+                            <div class="detail-title">
+                                <span>{{item.title}}</span>
+                            </div>
+                        </div>
+                        <figure class="card-expertise-img">
+                            {{ function([services, 'svg'], TimberImage(item.get_field('expertise--image')).src) }}
+                        </figure>
+                        <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross.svg') }}</span>
+                    </a>
+                </div>
+
+                <div id="modal--{{loop.index}}" class="iziModal" data-izimmodal-group="expertise">
+                    <button class="item-close btn-circle" data-izimodal-close=""><span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/close.svg') }}</span></button>
+                    <div class="next-modal">
+                        <button class="btn-prev btn-circle" data-izimodal-prev="">{{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}</button>
+                        <button class="btn-next btn-circle" data-izimodal-next="">{{ function([services, 'svg'], img ~ '/icon/circle-btn.svg') }}</button>
+                    </div>
+                    <div class="title title-lg fw-200 c-orange mb-lg md-down-mb-sm">{{item.title}}</div>
+                    <div class="cms">
+                        {{item.get_field('expertise--description')}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="row swiper-container-ctr slider-expertise">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {% for item in section['--relation'] %}
+                        <div class="swiper-slide card-expertise-ctr card-expertise-ctr-slider">
+                             <a href="#" data-izimodal-open="#modal--{{loop.index}}" data-izimodal-zindex="99999999" data-izimodal-preventclose=""  class="card-expertise ">
+                                <div class="card-expertise-detail">
+                                    <div class="detail-title">
+                                        <span>{{item.title}}</span>
+                                    </div>
+                                </div>
+
+                                <figure class="card-expertise-img">
+                                    {{ function([services, 'svg'], TimberImage(item.get_field('expertise--image')).src) }}
+                                </figure>
+
+                                <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/cross.svg') }}</span>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
+    </div>
+</section>

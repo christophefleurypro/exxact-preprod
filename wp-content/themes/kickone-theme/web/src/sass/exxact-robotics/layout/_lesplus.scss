@@ -1,0 +1,123 @@
+.section-lesplus{
+	position: relative;
+	padding-top: 150px !important;
+	@include media-breakpoint-down('md'){
+		padding-top: 270px !important;
+	}
+	.exxact-image--lesplus{
+		position: absolute;
+		left: 0;
+		top: 150px;
+		flex: 0 0 50%;
+		max-width: 50%;
+		z-index: 5;
+		overflow: visible;
+		@include media-breakpoint-down('md'){
+			flex: 0 0 100%;
+			max-width: 100%;
+			top: 0px;
+			&:before{
+				padding-top: 230px;
+			}
+		}
+		.img-cover{
+			z-index: 5;
+		}
+		.span-circle{
+		  	position: absolute;
+	        z-index: 110;
+	        bottom: 0;
+	        left: 0;
+	        margin: auto;
+	        width: 250px;
+	        height: 250px;
+	        margin: auto;
+	        transform: translate(-50%,50%);
+			@include media-breakpoint-down('md'){
+	        	left: auto;
+	        	right: 0;
+	        	width: 150px;
+	       		height: 150px;
+	        	transform: translate(50%,50%);
+			}
+	        svg{
+	            width: 100%;
+	            height: 100%;
+			}
+		}
+
+		.span-icon{
+	        position: absolute;
+	        z-index: 1;
+            top: 0px;
+		    right: 10%;
+		    width: 300px;
+		    transform: translate(0, -80px);
+		    height: 300px;
+		    margin: auto;
+	        svg{
+	            width: 100%;
+	            height: 100%;
+	            path{
+	            	fill: $light-grey;
+	            }
+	        }
+	    }
+
+	}
+	.container-fluid{
+		position: relative;
+		z-index: 10;
+	}
+	.lesplus-subtitle{
+		margin-top: 150px;
+		margin-right: 60px;
+		font-size: 60px;
+		color: $grey;
+	    line-height: 1.2em;
+	    font-weight: 200;
+		@include media-breakpoint-down('md'){
+	        margin-top: 0;
+		    margin-right: 50%;
+		    margin-bottom: 30px;
+		    font-size: 40px;
+		    line-height: 1em;
+		}
+		span{
+			color: $orange;
+		}
+	}
+
+	
+}
+
+.list-lesplus{
+	border-left: 1px solid rgba($grey,0.4);
+	border-right: 1px solid rgba($grey,0.4);
+	border-bottom: 1px solid rgba($grey,0.4);
+	.item-lesplus-ctr{
+		background: $white;
+		border-top: 1px solid rgba($grey,0.4);
+		transition: 0.2s linear;
+		&:hover{
+			background: #f3f3f3;
+		}
+
+		@include media-breakpoint-down(xs){
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+		&:nth-child(2n-1){
+			border-right: 1px solid rgba($grey,0.4);
+		}
+		.item-lesplus{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 50px 70px;
+			@include media-breakpoint-down(xs){
+				padding: 35px 00px;
+			}
+		}
+	}
+}

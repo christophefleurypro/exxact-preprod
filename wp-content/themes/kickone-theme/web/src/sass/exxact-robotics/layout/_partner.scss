@@ -1,0 +1,132 @@
+.section-partenariats{
+	position: relative;
+	overflow: hidden;
+	padding-top: 200px;
+	padding-bottom: 100px;
+	margin-top: -30px;
+	background-color: $white;
+	.svg-background{
+		position: absolute;
+		z-index: 11;
+		left: 0; right: 0;
+		bottom: 0;
+		top: 0;
+		background-repeat: no-repeat;
+	}
+	&:before{
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 470px;
+		margin: auto;
+		background: $very-light-grey-2;
+		transform: translateY(-140px) skewY(-10deg);
+	}
+	&:after{
+		content: '';
+		position: absolute;
+	    z-index: 1;
+		left: 0;
+		top: 470px;
+		right: 0;
+		bottom: -380px;
+		background-color: #191919 ;
+		background-image: url('../img/icon/bg-mission.svg');
+		background-size: 50%;
+		transform: skew(00deg, -10deg);
+	}
+	.container{
+	    position: relative;
+    	z-index: 10;
+	}
+	.col-bloc-left-ctr{
+		padding-right: 60px;
+	}
+	.col-bloc-left{
+		margin-top: 300px;
+		padding-top: 180px;
+	}
+	.col-bloc-right-ctr{
+		padding-left: 60px;
+	}
+	.col-bloc-right-top{
+		position: relative;
+		margin-bottom: 150px;
+		padding: 60px 40px 20px 40px;
+		background: $white;
+		border-left: 10px solid $orange;
+		border-top: 10px solid $orange;
+		border-right: 10px solid $orange;
+		> *{
+			position: relative;
+			z-index: 2;
+		}
+		&:before{
+			content: '';
+			position: absolute;
+			z-index: 1;
+			left: -10px;
+			right: -10px;
+			bottom: 0;
+			height: 100px;
+			margin: auto;
+			background: $white;
+			transform: translateY(40px) skewY(-10deg);
+			border-left: 10px solid $orange;
+			border-bottom: 10px solid $orange;
+			border-right: 10px solid $orange;
+		}
+	}
+	.col-bloc-right-bottom{
+		margin-top: 50px;
+		position: relative;
+		padding: 15px;
+		padding-top: 0px;
+		background: $white;
+		> *{
+			position: relative;
+			z-index: 2;
+		}
+		&:before{
+			content: '';
+			position: absolute;
+			z-index: 1;
+			left: 0px;
+			right: 0px;
+			top: 0;
+			height: 120px;
+			margin: auto;
+			background: $white;
+			transform: translateY(-40px) skewY(-10deg);
+			border-bottom: 1px solid $grey;
+		}
+	}
+	.list-partner{
+
+	}
+	.partner-link{
+	    width: 100%;
+	}
+	.partner-item{
+		text-align: center;
+	    display: block;
+	    justify-content: center;
+	    align-items: center;
+	    width: 100%;
+	    padding: 15px 20px;
+	   	img{
+   		    max-height: 60px;
+	   	}
+	    &.first-partner{
+	    	padding: 10px;
+    	    padding-top: 0px;
+    	    transform: translateY(-30px);
+	    	img{
+	    	    max-width: 65%;
+    	        max-height: 100px;
+		    }
+	    }
+	}
+}

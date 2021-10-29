@@ -1,0 +1,118 @@
+<!doctype html>
+<html {{ site.language_attributes }}>
+    {#
+    |
+    | Head
+    |-------
+    #}
+    <head>
+        {% include '_layouts/_head.twig' %}
+    </head>
+    
+   {#
+    |
+    | Import macros
+    |----------------
+    #}
+    {% import '_macros/global.twig' as global %}
+    {% import '_macros/banner.twig' as banner %}
+    {% import '_macros/button.twig' as button %}
+    {% import '_macros/section.twig' as section %}
+    
+    {#
+    |
+    | Body
+    |-------
+    #}
+    <body class="{{ body_class }}">
+        {#
+        |
+        | Loader
+        |---------
+        #}
+        
+        <div id="page-loader" class="page-loader">
+            <script>
+                if(sessionStorage.getItem('loaded_once') === null){
+                    document.getElementById('page-loader').classList.add('active');
+                }
+            </script>
+            <div class="item-content">
+                {{ function([services, 'svg'], img ~ '/icon/logo.svg') }}
+                <div class="item-loadbar">
+                    <div class="item-loadbar-inner"></div>
+                </div>
+            </div>
+        </div>
+
+        {#
+        |
+        | Site container
+        |-----------------
+        #}
+        <div class="site-container">
+            {#
+            |
+            | Header
+            |---------
+            #}
+            {% block header %}
+                {% include '_layouts/header.twig' %}
+            {% endblock %}
+
+            {#
+            |
+            | Content
+            |---------
+            #}
+            {% block content %}{% endblock %}
+
+            {#
+            |
+            | Footer
+            |---------
+            #}
+            {% block footer %}
+                {% include '_layouts/footer.twig' %}
+            {% endblock %}
+
+            {#
+            |
+            | Cookie
+            |---------
+            {% include '_includes/cookie.twig' %}
+            #}
+        </div>
+
+        {#
+        |
+        | Javascripts
+        |--------------
+        #}
+        {% block javascripts %}
+
+            <script type="text/javascript">
+                window.addEventListener( "resize", getSizes, false); 
+                function getSizes() { 
+                    let browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+                    if (browserZoomLevel > 200 ) {
+                        jQuery('body').addClass('zoom-150');
+                    }else{
+                        jQuery('body').removeClass('zoom-150');
+                    }
+                    console.log(browserZoomLevel);
+                } 
+                getSizes();
+            </script>
+
+            <script src="{{ dist }}/js/app.js"></script>
+        {% endblock %}
+	     
+        {#
+        |
+        | WP Footer
+        |--------------
+        #}
+        {{ wp_footer }}
+    </body>
+</html>

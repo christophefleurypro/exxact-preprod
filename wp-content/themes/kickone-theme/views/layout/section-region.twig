@@ -1,0 +1,43 @@
+<section class="section-regions-home"  {% if id %}id="{{id}}"{% endif %}>
+    <div class="container">
+        <div class="row">
+            <div class="offset-lg-6 col-lg-5 mb-md" data-anim-timeline>
+                <div class="item-title ">
+                    <h2 class="title title-exxact title-xl fw-600 title-exxact-style-2" >
+                        <span class="span-title" data-anim-item="fadeInUp.parallax.xs">{{ section['--title'] }}</span>
+                        <span class="span-icon">{{ function([services, 'svg'], img  ~ '/icon/title-border.svg' ) }}</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="offset-lg-7 col-lg-5 mb-md" data-anim-timeline>
+                <div class="item-content cms mb-lg">
+                    {{section['--text']}}
+                </div>
+                <div class="list-btn center">
+                    {% set link = section['--btn'] %}
+                     {{button.default({ 
+                        'type'          :   link['lien-type'],
+                        'text'          :   link['texte'],
+                        'lien-interne'  :   link['lien-interne'],
+                        'lien-externe'  :   link['lien-externe'],
+                        'mail'          :   link['mail'],
+                        'phone'         :   link['phone'],
+                        'id'            :   link['id'],
+                        'icon'          :   img ~ '/icon/ico-btn-right.svg',
+                        'color'         :   'orange' ,
+                        'class'         :   'btn-icon btn-icon-left mb-md',
+                        'get'           :   valueBtn_1
+                        }, img)
+                    }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="img-cover ">
+        <figure class="banner-background">
+            <img src="{{TimberImage(section['--image']).src}}" alt="{{TimberImage(section['--image']).alt}}" class="img-fluid"/>
+        </figure>
+    </div>
+
+</section>

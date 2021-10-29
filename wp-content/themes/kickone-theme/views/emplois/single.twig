@@ -1,0 +1,119 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    
+    <div id="single-fond">
+
+        {#
+        |
+        | Section Banner
+        |-----------------
+        #}
+        {% set section = post.get_field('s-banner') %}
+        {{ banner.single_job({
+            'title': post.title,
+            'text':  translations.publier ~ post.date|date('d/m/Y') ~' .</span> ' ~ translations.ref ~ post.get_field('emplois--ref'),
+            'image': section['--image'] ? section['--image'] : img ~ '/default/bgJob.jpg'
+        }) }}
+
+        {#
+        |
+        | Section Colonne
+        |------------------
+        #}
+        <section class="section section-single-job" id="content-job">
+            <div class="container">
+                <div class="row align-items-center justify-content-between row-item">
+                    <div class="col-lg-8 content-detail-ctr">
+                        {% for item in post.get_field('emplois--contenu') %}
+                            <div class="block-content block-content-job mb-xl ">
+                                <h3 class="title-lg fw-200 c-orange mb-lg">{{item['--title']}}</h3>
+                                <div class="cms">
+                                    {{item['--text']}}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% if form %}
+                            <div id="postuler" class="contact-form">
+                                <div class="job-form">
+                                    {% set shortcode = "[contact-form-7 id="~ form  ~"]" %}
+                                    {{shortcode|shortcodes}}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-4 resume-detail-ctr">
+                        <div class="resume-detail" id="block-resume">
+                            <p class="resume-title title-lg fw-200 c-orange mb-md">{{translations.resume}}</p>
+                            <ul class="list-detail-job">
+                                {% if post.terms('localisations') %}
+                                    <li class="detail-item ">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-localisation.svg')}}</span>
+                                        {{post.terms('localisations')|join(', ')}}
+                                    </li>
+                                {% endif %}
+
+                                {% if post.terms('types') %}
+                                    <li class="detail-item ">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-type.svg')}}</span>
+                                        {{post.terms('types')|join(', ')}}
+                                    </li>
+                                {% endif %}
+                              
+                                {% if post.terms('categorie') %}
+                                    <li class="detail-item">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-service.svg')}}</span>
+                                        {{post.terms('categorie')|join(', ')}}
+                                    </li>
+                                {% endif %}
+                                {% if post.get_field('emplois--demarrage') %}
+                                    <li class="detail-item">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-demarrage.svg')}}</span>
+                                        <span>{{translations.demarrage}}</span> <span> &nbsp;{{post.get_field('emplois--demarrage')}}</span>
+                                    </li>
+                                {% endif %}
+                                {% if post.get_field('emplois--deplacement') %}
+                                    <li class="detail-item">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-deplacement.svg')}}</span>
+                                        {{post.get_field('emplois--deplacement')}}
+                                    </li>
+                                {% endif %}
+                                {% if post.get_field('emplois--salaire') %}
+                                    <li class="detail-item">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-salaire.svg')}}</span>
+                                        {{post.get_field('emplois--salaire')}}
+                                    </li>
+                                {% endif %}
+                                {% if post.get_field('emplois--experiences') %}
+                                    <li class="detail-item">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-experiences.svg')}}</span>
+                                        {{post.get_field('emplois--experiences')}}
+                                    </li>
+                                {% endif %}
+                                {% if post.get_field('emplois--etudes') %}
+                                    <li class="detail-item">
+                                        <span class="ico-job">{{function([services, 'svg'], img ~ '/icon/job-etudes.svg')}}</span>
+                                        {{post.get_field('emplois--etudes')}}
+                                    </li>
+                                {% endif %}
+                            </ul>   
+                            {% if form %}
+                                <a href="#postuler" class="scroll-section btn btn-orange btn-icon btn-icon-center">
+                                    <span class="icon">
+                                        {{ function([services, 'svg'],  img ~ '/icon/ico-btn-right.svg' )}}
+                                    </span>
+                                    <span class="text">
+                                        {{translations.postuler}}
+                                    </span>
+                                </a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+{% endblock %}

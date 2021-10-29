@@ -1,0 +1,130 @@
+{% macro default(datas,img) %}
+
+	{% set type 	= datas.type %} 
+	{% set texte 	= datas.text %} 
+	{% set aspect 	= datas.aspect %} 
+	{% set color 	= datas.color %} 
+	{% set icon 	= datas.icon %} 
+	{% set class 	= datas.class %} 
+	{% set get 		= datas.get %} 
+
+	{% set externe 	= false %}
+
+
+	{% if type == "page" %}
+		{% set link 		= datas['lien-interne'] %}
+		{% if get %}
+			{% set link = link  ~ '?form-data=' ~ get %}
+		{% endif %}
+		{% set class2 		= "" %}
+	{% elseif type == "externe" %}
+		{% set externe 		= true %}
+		{% set link 		= datas['lien-externe'] %}
+	{% elseif type == "file" %}
+		{% set link 		= datas['file']['url'] %}
+		{% set class 		= class ~ ' btn-download' %} 
+	{% elseif type == "mailto" %}
+		{% set link  		= 'mailto:'~ datas['mail'] %}
+	{% elseif type == "phone" %}
+		{% set link  		= 'tel:'~ datas['phone'] %}
+	{% elseif type == "ancre" %}
+		{% set class 		= class ~ ' scroll-section' %} 
+		{% set link  		= '#'~ datas['id']|sanitize %}
+	{% endif %}
+
+	{% if link and texte %}
+		<a href="{{link}}" class="btn btn-{{color}} {{class}}" {{externe ? 'target="_blank"' : ''}}>
+			<span class="text">
+				{{texte}}
+			</span>
+			{% if icon %}
+				<span class="icon">
+	                {{ function([services, 'svg'], icon )}}
+	            </span>
+            {% endif %}
+		</a>
+	{% endif %}
+{% endmacro  %}
+
+
+{% macro defaultFalse(datas,img) %}
+	{% set type 	= datas.type %} 
+	{% set texte 	= datas.text %} 
+	{% set aspect 	= datas.aspect %} 
+	{% set color 	= datas.color %} 
+	{% set icon 	= datas.icon %} 
+	{% set class 	= datas.class %} 
+	{% set get 		= datas.get %} 
+
+	{% if texte %}
+		<div class="btn btn-{{color}} {{class}}" >
+			<span class="text">
+				{{texte}}
+			</span>
+			{% if icon %}
+				<span class="icon">
+	                {{ function([services, 'svg'], icon )}}
+	            </span>
+            {% endif %}
+		</div>
+	{% endif %}
+{% endmacro  %}
+
+
+{% macro link_simple(datas,img) %}
+
+	{% set type 	= datas.type %} 
+	{% set texte 	= datas.text %} 
+	{% set aspect 	= datas.aspect %} 
+	{% set color 	= datas.color %} 
+	{% set icon 	= datas.icon %} 
+	{% set class 	= datas.class %} 
+	{% set externe 	= false %}
+
+
+	{% if type == "page" %}
+		{% set link 		= datas['lien-interne'] %}
+		{% set class2 		= "" %}
+	{% elseif type == "externe" %}
+		{% set externe 		= true %}
+		{% set link 		= datas['lien-externe'] %}
+	{% elseif type == "file" %}
+		{% set link 		= datas['file']['url'] %}
+		{% set class 		= class ~ ' btn-download' %} 
+	{% elseif type == "mailto" %}
+		{% set link  		= 'mailto:'~ datas['mail'] %}
+	{% elseif type == "phone" %}
+		{% set link  		= 'tel:'~ datas['phone'] %}
+	{% elseif type == "ancre" %}
+		{% set link  		= '#'~ datas['id']|sanitize %}
+	{% endif %}
+
+	{% if link and texte %}
+		<a href="{{link}}" class="{{class}}" {{externe ? 'target="_blank"' : ''}}>
+			{{texte}}
+		</a>
+	{% endif %}
+{% endmacro  %}
+
+
+
+
+{% macro video(datas,img) %}
+
+	{% set link 	= datas.link %} 
+	{% set type 	= datas.type %} 
+	{% set texte 	= datas.text %} 
+
+	{% if link %}
+		<a href="#" data-izimodal-open='{{link}}' class="btn btn-white btn-icon btn-icon-right btn-video {{datas.class}}" >
+			<span class="text">
+				{{texte}}
+			</span>
+			<span class="icon">
+	            {{ function([services, 'svg'], img ~ '/icon/circle.svg') }}
+	        </span>
+		</a>
+	{% endif %}
+
+
+{% endmacro  %}

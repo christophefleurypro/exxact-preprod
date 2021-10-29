@@ -1,0 +1,60 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+	<div id="page-region" class="page-content">
+
+        
+        <section class="section section-regions"  >
+            <div class="container">
+
+                <div class="row">
+                    <div class="offset-lg-5 col-lg-5 mb-md mt-xxl" data-anim-timeline>
+                        <div class="item-title ">
+                            <h2 class="title title-exxact title-xl fw-600" >
+                                <span class="span-title" data-anim-item="fadeInUp.parallax.xs">{{ post.get_field(('--title')) }}</span>
+                                <span class="span-icon ml-xl">{{ function([services, 'svg'], img ~ '/icon/deco-title.svg') }}</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                {% set indexImg = 0 %}
+                {% for item in post.get_field('--block') %}
+                          
+                    <div class="row item-region" {% if item['--image'] %}data-change-slide="{{indexImg}}" {% set indexImg = indexImg + 1 %}{% endif %}>
+                        <div class="offset-lg-5 col-lg-7">
+                            <div class="region-block-content cms">
+                                <p>{{item['--text']}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+
+            {% set indexImg = 0 %}
+            <div class="slider-region col" id="slider-region">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for item in post.get_field('--block') %}
+                            {% if item['--image'] %}
+                                {% set indexImg = indexImg + 1 %}
+                                <div class="swiper-slide" data-slider={{loop.index}}>
+                                    <div class="exxact-image exxact-image--region" style="background-image:url({{TimberImage(item['--image']).src}});">
+                                        <div class="img-cover">
+                                            <figure >
+                                                    <img src="{{TimberImage(item['--image']).src|resize(1300)}}" loading="lazy" alt="{{TimberImage(item['--image']).alt}}" class="img-fluid d-none"/>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+{% endblock %}

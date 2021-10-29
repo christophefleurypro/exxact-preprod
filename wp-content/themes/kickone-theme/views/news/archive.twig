@@ -1,0 +1,64 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+    <div id="page-news-archive">
+
+        {#
+        |
+        | Section Banner
+        |-----------------
+        #}
+        {% set section = post.get_field('s-banner') %}
+        {{ banner.default({
+            'title': section['--title'],
+            'text':  section['--text'],
+            'image': section['--image']
+        }) }}
+
+
+         <section class="section-listing-job" >
+            <div class="container-filter container">
+                <form method="GET" action="{{blog_page_url}}" id="filter-job" class="row ai-center jc-between">
+                    <div class="col-md-4">
+                        <select name="type">
+                            <option value="all">{{translations.touteactu}}</option>
+                            {% for item in types %}
+                                <option value="{{item.slug}}" {{item.slug == _current_types ? 'selected' : '' }}>{{item.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-orange">
+                            <span class="text">
+                                {{translations.filter_actu}}
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+           
+            <div class="container-card container">
+                <div class="row">
+                    {% for item in listing %}
+                        {{global.actu(
+                            item, 
+                            img , 
+                            loop.index % 2 == 0 ? 'card-reverse' : '' , 
+                            translations)
+                        }}
+                    {% endfor %}
+                </div>
+                 <div class="row">`
+                    {% if listing.pagination.total != 1 %}
+                    {{ global.pagination({ 'pagination': listing.pagination, 'prev': '<', 'next': '>' }, img) }}
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </div>
+{% endblock %}

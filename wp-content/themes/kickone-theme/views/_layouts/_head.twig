@@ -1,0 +1,74 @@
+{#
+|
+| Metas
+|---------
+#}
+{% block metas %}
+    <meta charset="{{ site.charset }}">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{img}}/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{img}}/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{img}}/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/{{img}}/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{img}}/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{img}}/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{img}}/favicon/favicon-16x16.png">
+    <link rel="icon" href="{{img}}/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#FF5D06">
+    <meta name="theme-color" content="#FF5D06">
+    <meta name="msapplication-TileImage" content="{{img}}/favicon//ms-icon-144x144.png">
+
+
+{% endblock %}
+
+{#
+|
+| Title
+|---------
+#}
+{% block title %}
+    {% if clear_head_for_yoast %}
+        <title>{{ wp_title }}</title>
+    {% else %}
+        <title>{{ wp_title ? wp_title : site.name }}</title>
+    {% endif %}
+{% endblock %}
+
+{#
+|
+| Meta Description
+|-------------------
+#}
+{% block meta_description %} 
+    {% if not clear_head_for_yoast %}
+        <meta name="description" content="{{ site.description }}"> 
+    {% endif %}
+{% endblock %}
+
+{#
+|
+| wp_head
+|----------
+#}
+{{ wp_head }}
+
+{#
+|
+| Stylesheets
+|--------------
+#}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ dist }}/css/app.css">
+{% endblock %}
+
+{#
+|
+| Script GTM
+|-------------
+
+
+{{ options.scripts_analytics }}
+
+#}
+

@@ -1,0 +1,37 @@
+.img-fluid {
+  max-width: 100%;
+  width: 100%; }
+
+/*
+*
+* Choix Bouton Radio /.acf-image-select
+*
+*/
+.acf-image-select .acf-radio-list {
+  display: flex;
+  flex-wrap: wrap; }
+  .acf-image-select .acf-radio-list > li {
+    display: inline-block;
+    list-style: none;
+    margin-right: 0px !important;
+    padding: 0 10px;
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0px; }
+    .acf-image-select .acf-radio-list > li > label {
+      padding: 10px;
+      display: block; }
+  .acf-image-select .acf-radio-list label input {
+    display: none; }
+  .acf-image-select .acf-radio-list label p {
+    margin: 0;
+    font-weight: bold;
+    text-align: center; }
+  .acf-image-select .acf-radio-list label img {
+    border: solid 6px #ddd;
+    max-width: calc(100% - 12px); }
+  .acf-image-select .acf-radio-list label.selected img {
+    border: solid 6px #007cba; }
+
+
+/*# sourceMappingURL=editor.css.map*/

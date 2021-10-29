@@ -1,0 +1,66 @@
+
+<section class="section section-team"  {% if id %}id="{{id}}"{% endif %} >
+    <div class="container" data-anim-timeline>
+        <div class="row">
+            <div class="col-lg-12 mb-md">
+                <div class="item-title " data-anim-item="fadeInUp.parallax.xs">
+                    <h2 class="title title-xl c-white fw-600" >{{ section['--title'] }}</h2>
+                </div>
+            </div>
+            <div class="col-lg-6 item-content">
+                <div class="cms" data-anim-item="fadeInUp.parallax.xs">
+                    <p>{{section['--text']}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-team-slider">
+        <div class="container">
+            <div class="row list-team swiper-container-ctr slider-team ">
+                <div class="swiper-container col-md-12">
+                    <div class="swiper-wrapper">
+                        {% for item in section['--relation'] %}
+                            <div class="swiper-slide">
+                                <div class="card-team-ctr">
+                                    <div class="card-team">
+                                        <div class="exxact-image exxact-image--team">
+                                            <div class="img-cover">
+                                                <figure>
+                                                    {% if item.get_field('team--image') %}
+                                                        <img src="{{TimberImage(item.get_field('team--image')).src|resize(260, 260)}}" loading="lazy" alt="{{TimberImage(item.get_field('team--image')).alt}}" class="img-fluid"/>
+                                                    {% endif %}
+                                                </figure>
+                                            </div>
+                                        </div>
+                                        <div class="card-team-detail">
+                                            <div class="detail-title">
+                                                <p class="c-orange fs-lg fw-600 mb-xs">{{item.title}}</p>
+                                            </div>
+                                            <div class="detail-content">
+                                                <p>{{item.get_field('team--function')}}</p> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                 <div class="swiper-button swiper-button-prev">
+                    {{ function([services, 'svg'], img ~ '/icon/target-btn.svg') }}
+                </div>
+                <div class="swiper-button swiper-button-next">
+                    {{ function([services, 'svg'], img ~ '/icon/target-btn.svg') }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="exxact-image exxact-image--bg">
+        <div class="img-cover img-cover-team bg-light bg-light-team">
+            <figure >
+                <img src="{{TimberImage(section['--image']).src}}" loading="lazy" alt="{{TimberImage(section['--image']).alt}}" class="img-fluid"/>
+            </figure>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,215 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    
+<div id="page-home"  class="page-content">
+
+    {#
+    |
+    | Section Banner
+    |-----------------
+    #}
+    {{ banner.home({
+        'title':    post.get_field('s1--title'),
+        'text':     post.get_field('s1--text'),
+        'image':    post.get_field('s1--image'),
+        'imageM':   post.get_field('s1--image-mobil'),
+        'btn1':    post.get_field('s1--btn'),
+        'btn2':    post.get_field('s1--btn-2'),
+        'classes':   ''
+    }, img , translations) }}
+
+
+    {#
+    |
+    | Section Histoire
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-histoire.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section['--block'] 
+            }  
+        %}
+
+    {% endif %}
+
+
+    {#
+    |
+    | Section Team
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-team') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-team.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+
+    {#
+    |
+    | Section Philosophie
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-philosophie') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-philosophie.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+    {#
+    |
+    | Section Missions
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-missions') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-mission.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+    {#
+    |
+    | Section Expertise
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-expertise') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-expertise.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+    {#
+    |
+    | Section Region
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-region') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-region.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+    {#
+    |
+    | Section Region
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-product') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-product.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+    {#
+    |
+    | Section Region
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-actu') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-actualites.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+
+    {#
+    |
+    | Section Les plus
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-lesplus') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-lesplus.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section 
+            }  
+        %}
+
+    {% endif %}
+
+
+
+    {#
+    |
+    | Section Offres
+    |------------------
+    #}
+    {% set section =  post.get_field('groupe-offres') %}
+    {% if section["--section-menu-id"]['hide-section'] == false %}
+
+        {% include 'layout/section-offres.twig' with 
+            {
+                'id' : section["--section-menu-id"]['--text'] ? section["--section-menu-id"]['--text']|sanitize : false ,
+                'IndexG': IndexG, 
+                'content': section,
+                'valueBtn_1': false, 
+                'valueBtn_2': translations.candiaturespon
+            }  
+        %}
+
+    {% endif %}
+
+
+
+
+
+    </div>
+{% endblock %}
