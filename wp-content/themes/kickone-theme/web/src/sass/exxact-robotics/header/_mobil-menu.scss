@@ -98,7 +98,22 @@
         padding-right: 0px;
         //padding-top: 150px;
         //padding-bottom: 50px;
+        .panel-submenu{
+            .nav-submenu{
+                margin-right: 16px;
+                margin-bottom: 25px;
+                li{    
+                    text-align: right;
+                    font-size: 1.1em;
+                    margin-bottom: 9px;
+                    a{
+
+                    }
+                }
+            }
+        }
         .big-menu{
+            margin-bottom: 15px;
         }
         .other-menu{
             .menu-item{
@@ -135,6 +150,11 @@
                     .ico-target{
                         transform: rotate(180deg);
                         margin-left: 20px;
+                        svg{
+                            [fill^="#"]{
+                                fill: $orange;
+                            }
+                        }
                     }
                     &.collapsed{
                          .ico-target{

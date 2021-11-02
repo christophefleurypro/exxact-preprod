@@ -42,6 +42,25 @@
 	        align-items: center;
 		    .exxact-image{
 		    	position: absolute;
+		    	overflow: visible;
+		    	&:before{
+		    		padding-top: 420px;
+			    	@include media-breakpoint-down(md){
+		    			padding-top: 320px;
+			    	}
+		    	}
+		    	&:after{
+		    		content: '';
+		    		height: 60px;
+		    		width: 60px;
+		    		left:0px;
+		    		right:auto;
+		    		bottom: 0px;
+		    		position: absolute;
+		    		border-bottom: 4px solid $orange;
+		    		transform: translate(-30px, 30px);
+		    		border-left: 4px solid $orange;
+		    	}
 		    }
 		}
 		&.solution-reverse{
@@ -52,6 +71,15 @@
 				position: absolute;
 				right: auto;
 				left: 0; 
+			    .exxact-image{
+			    	&:after{
+		    			border-left: 0px;
+		    			border-right: 4px solid $orange;
+		    			transform: translate(30px, 30px);
+			    		left: auto;
+			    		right: 0px;
+					}	
+				}
 			}
 		}
 	}	

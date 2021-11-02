@@ -2,7 +2,9 @@
 //
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
-
+$transition-base:             all .2s ease-in-out !default;
+$transition-fade:             opacity .15s linear !default;
+$transition-collapse:         height .35s ease !default;
 
 $enable-caret:                                true !default;
 $enable-rounded:                              true !default;

@@ -37398,6 +37398,7 @@ var define = false;
     |-----------
     */
     var $body = $('body');
+    console.log(Collapse);
     /*
     |
     |  Scroll Section
@@ -37525,7 +37526,7 @@ var define = false;
       ScrollTrigger.create({
         trigger: $(this),
         start: '0 25%',
-        markers: true,
+        markers: false,
         end: '+=' + $(this).outerHeight(true),
         onEnter: function onEnter(self) {
           console.log('onEnter');

@@ -186,78 +186,67 @@
             {% for item in menuBottom %}
 
                 {% set href = item.link %}
-                {% set other = "" %}
+                {% set other = false %}
 
-                {% if item.type_de_lien == "first" and item.get_children %}
+                {% if item.add_select == "first" or item.add_select or item.get_children %}
                     {% set href  = "#collapse-" ~ item.slug %}
                     {% set other = 'data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapse-' ~ item.slug ~'" ' %}
                 {% endif %}
 
                 <li class="{{ item.classes | join(' ') }}" data-stagger-item>
-                    <a href="{{href}}" class="item-link"  {{other}} >
+                    <a href="{{href}}" class="item-link {{other ? 'collapsed' : '' }}"  {{other}} >
                         {{item.title}}
-                        {% if item.get_children %}
-                            <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/bottom.svg') }}</span>
+                        {% if other %}
+                            <span class="ico-target">{{ function([services, 'svg'], img ~ '/icon/bottom-black.svg') }}</span>
                         {% endif %}
                     </a>
-
-                    {% if item.type_de_lien == "first" and item.get_children %}
+                    {% if item.add_select == "home" %}
                         <div class="collapse header-submenu" id="collapse-{{item.slug}}">
-                            <div class="row">
-                                {% set image = item.img_submenu_image %}
-                                <div class="col-lg-6 col-md-12 hero-image-ctr">
-                                    <div class="hero-image">
-                                     <a href="{{item.link}}">
-                                            <div class="img-cover bg-overlay bg-overlay--green">
-                                                <figure>
-                                                    <img src="{{TimberImage(image).src}}" alt="{{TimberImage(image).alt}}" class="img-fluid"/>
-                                                </figure>
-                                            </div>
-                                            <div class="hero-image-title">
-                                                <span>{{item.img_submenu_texte}}</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {% if item.get_children %}
-                                    <div class="col-md-6">    
-                                        {% for children in item.get_children %}
-                                            <div class="col-md-12 nav-submenu-ctr">
-                                                <a class="link-submenu-title" href="{{children.link}}">{{children.title}}</a>
-
-                                                {% if children.type_de_lien == 'section' %}
-                                                    {% set fields = function([services, 'get_section_page'], children.object_id  ) %}
-                                                    {% if fields %}
-                                                        <ul class="nav-submenu">
-                                                            {% for field in fields %}
-                                                                {% if field.add_to_menu == true %}
-                                                                    <li>
-                                                                        <a class="link-submenu-link" href="{{children.link}}#{{field.add_to_menu_name|sanitize}}">{{field.add_to_menu_name}}</a>
-                                                                    </li>
-                                                                {% endif %}
-                                                            {% endfor %}
-                                                        </ul>
-                                                    {% endif %}
-                                                {% else %}
-
-                                                    {% if children.get_children %}
-                                                        <ul class="nav-submenu">
-                                                            {% for children_1 in children.get_children %}
-                                                                <li>
-                                                                     <a class="link-submenu-link" {{children_1.target ? 'target="_blank"' : '' }} href="{{children_1.link}}">{{children_1.title}}</a>
-                                                                </li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                    {% endif %}
-                                                {% endif %}
-                                            </div>
+                            <div class="panel-submenu">
+                                <ul class="nav-submenu">
+                                    {% for item in function([services, 'get_section_home_page'], front_id ) %}
+                                        <li>
+                                            <a class="item-link {{item.scroll}}" href="{{item.link}}" data-id="{{item.slug}}">
+                                                {{item.title}}
+                                            </a>   
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% elseif item.add_select == "products" %}
+                        <div class="collapse header-submenu" id="collapse-{{item.slug}}">
+                            <div class="panel-submenu --products">
+                                <ul class="nav-submenu list-product">
+                                    {% for item in item.children %}
+                                        {% set term = function([services, 'get_types_product'], item._menu_item_object_id ) %}
+                                        {% for product in term.products %}
+                                            <li >
+                                                <a href="{{product.link}}" class="item-link">
+                                                    {{product.title}}
+                                                </a>
+                                            </li> 
                                         {% endfor %}
-                                    </div>
-                                {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% elseif item.get_children %}
+                        <div class="collapse header-submenu" id="collapse-{{item.slug}}">
+                            <div class="panel-submenu">
+                                <ul class="nav-submenu">
+                                    {% for item in item.children %}
+                                        <li>
+                                            <a class="item-link " href="{{item.link}}" data-id="{{item.slug}}">
+                                                {{item.title}}
+                                            </a>   
+                                        </li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     {% endif %}
+
                 </li>
             {% endfor %}
         </ul>
@@ -269,7 +258,7 @@
                         {{item.title}} &nbsp;
                         {% if item.add_icon %}
                             <span class="c-orange">
-                            {{ function([services, 'svg'], img ~ '/icon/'~ item.add_icon ~'.svg') }}
+                                {{ function([services, 'svg'], img ~ '/icon/'~ item.add_icon ~'.svg') }}
                             </span>
                         {% endif %}
                     </a>

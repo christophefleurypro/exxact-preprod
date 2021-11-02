@@ -59,16 +59,18 @@
                     </div>
                 </div>
                 <div class="row jc-center"> 
-                    <div class="col-md-8 swiper-container-ctr">
+                    <div class="col-md-8 swiper-container-ctr swiper-context">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
                                 {% for item in post.get_field('context--listing') %}
                                     <div class="swiper-slide item-mission-ctr">
-                                        <div class="item-context-date" data-anim="1">{{item['--date']}}</div>
-                                        <div class="item-context-detail-ctr"  data-anim="2">
-                                            <h3 class="title title-md item-context-title c-orange fs-200 mb-xl">{{item['--title']}}</h3>
-                                            <div class="cms block-content-job item-context-detail">
-                                                <p>{{item['--text']}}</p>
+                                        <div class="item-context">
+                                            <div class="item-context-date" data-anim="1">{{item['--date']}}</div>
+                                            <div class="item-context-detail-ctr"  data-anim="2">
+                                                <h3 class="title title-md item-context-title c-orange fs-200 mb-xl">{{item['--title']}}</h3>
+                                                <div class="cms block-content-job item-context-detail">
+                                                    <p>{{item['--text']}}</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

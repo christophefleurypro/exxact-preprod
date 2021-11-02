@@ -9,9 +9,12 @@
 @import "functions";
 @import "variables";
 
+@import "mixins/transition";
 @import "mixins/breakpoints";
 @import "mixins/grid-framework";
 @import "mixins/grid";
 
 @import "grid";
 @import "utilities/display";
+
+@import "transition";

@@ -87,6 +87,33 @@ select{
         margin-bottom: 15px;
     }
 
+    .wpcf7-radio{
+        .wpcf7-list-item{
+            margin: 0px;
+        }
+        label{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 0px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        input[type=radio]{
+            width: 35px;
+            height: 30px;
+            margin-right: 20px;
+            background-color: $white;
+            &:checked{
+                background-image: url('../img/icon/cross-job.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 55%;
+            }
+        }
+    }
+
+
     .item-input-file{
         .label-custom{
             &:hover{

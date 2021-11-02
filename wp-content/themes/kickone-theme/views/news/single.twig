@@ -85,11 +85,13 @@
                 <section class="section pt-0 {{loop.last ? 'pb-xl' : 'pb-md' }}">
                     <div class="container">
                         <div class="row">
-                            <div class="exxact-image exxact-image--16-9">
-                                <div class="img-cover bg-orange">
-                                    <figure class="banner-background">
-                                        <img src="{{TimberImage(item['--image']).src}}" alt="{{TimberImage(item['--image']).alt}}" class="img-fluid  {% if imageM %}d-none d-sm-block{% endif %}"/>
-                                    </figure>
+                            <div class="col-xl-10 offset-xl-1">
+                                <div class="exxact-image exxact-image--border exxact-image--16-9">
+                                    <div class="img-cover bg-orange">
+                                        <figure class="banner-background">
+                                            <img src="{{TimberImage(item['--image']).src}}" alt="{{TimberImage(item['--image']).alt}}" class="img-fluid  {% if imageM %}d-none d-sm-block{% endif %}"/>
+                                        </figure>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -93,7 +93,7 @@ export default {
             ScrollTrigger.create({
                 trigger: $(this),
                 start: '0 25%',
-                markers: true,
+                markers: false,
                 end: '+='+$(this).outerHeight(true),
                 onEnter: (self) => {
                     console.log('onEnter');
